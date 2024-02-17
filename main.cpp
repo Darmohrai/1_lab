@@ -3,7 +3,7 @@
 #include "Bank.h"
 
 int main() {
-    int n;
+    /*int n;
     std::cout << "enter number of employee: ";
     std::cin >> n;
 
@@ -28,7 +28,9 @@ int main() {
         worker[i] = Employee(full_name, position, age, salary);
 
         //worker[i].getInfo();
-    }
+    }*/
+
+    
 
     return 0;
 }
