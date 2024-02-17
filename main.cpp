@@ -9,25 +9,8 @@ int main() {
 
     Employee* worker = new Employee[number_emp];
 
-    std::string full_name, position;
-    int salary, age;
-
     for (int i = 0; i < number_emp; i++){
-        std::cout << "Enter the worker's name: ";
-        std::cin >> full_name;
-
-        std::cout << "Enter the worker's position: ";
-        std::cin >> position;
-
-        std::cout << "Enter the worker's age: ";
-        std::cin >> age;
-
-        std::cout << "Enter the worker's salary: ";
-        std::cin >> salary;
-
-        worker[i] = Employee(full_name, position, age, salary);
-
-        //worker[i].getInfo();
+        worker[i] = Employee(i);
     }
 
     std::cout<<std::endl<<std::endl<<std::endl; // потрібно замінити на очищення екрану
@@ -72,7 +55,7 @@ int main() {
         }
     }
 
-    
+
 
     return 0;
 }

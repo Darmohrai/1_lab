@@ -18,14 +18,21 @@ private:
 public:
     Employee() : full_name("No_Info"), position("No_Info"), age(0), salary(0) {}
 
-    Employee(std::string full_name, std::string position, int age, int salary){
-        this->full_name = full_name;
-        this-> position = position;
-        this->age = age;
-        this->salary = salary;
+    Employee(int i){
+        std::cout << "Enter the worker's name: ";
+        std::cin >> this->full_name;
+        std::cout << "Enter the worker's position: ";
+        std::cin >> this-> position;
+        std::cout << "Enter the worker's age: ";
+        std::cin >> this->age;
+        std::cout << "Enter the worker's salary: ";
+        std::cin >> this->salary;
     }
 
     Employee(std::string position, int salary, std::string full_name, int age){
+        this->full_name = full_name;
+        this->age = age;
+
         if (this->salary < salary){
             std::cout << std::endl << this->full_name << " has promotion " << std::endl;
         }
@@ -34,8 +41,6 @@ public:
         }
         this->position = position;
         this->salary = salary;
-        this->full_name = full_name;
-        this->age = age;
     }
 
     void getInfo(){
