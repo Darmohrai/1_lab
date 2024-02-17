@@ -16,24 +16,27 @@ private:
 public:
     Bank(){name_of_bank = "None"; monthly_profit = 0; workdays = 0;}
 
-    void setNameOfBank(std::string name_of_bank){
-        this->name_of_bank = name_of_bank;
-    }
-    void setMonthlyProfit(int monthly_profit){
-        this->monthly_profit = monthly_profit;
-    }
-    void setWorkdays(int workdays){
-        this->workdays = workdays;
+    Bank(int employees_salary){
+        std::cout << std::endl << "Net profit = " << this->monthly_profit - employees_salary << std::endl;
     }
 
-    std::string getNameOfBank(){
-        return name_of_bank;
+    void setInfo(){
+        std::cout << "Enter name of bank in which company save money: ";
+        std::cin >> this->name_of_bank;
+        std::cout << "Enter company monthly's profit: ";
+        std::cin >> this->monthly_profit;
+        std::cout << "Enter company's workdays: ";
+        std::cin >> this->workdays;
     }
+
     int getMonthlyProfit(){
         return monthly_profit;
     }
-    int getWorkdays(){
-        return workdays;
+    void getInfo(){
+        std::cout << std::endl << "In " <<
+        this->name_of_bank << " bank copany has " <<
+        this-> monthly_profit << "usd in " <<
+        this-> workdays << " workdays" << std::endl;
     }
 
 };

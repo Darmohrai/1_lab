@@ -46,6 +46,18 @@ int main() {
         }
     }
 
+    std::cout<<std::endl<<std::endl<<std::endl; // потрібно замінити на очищення екрану
+
+    Bank profit;
+    profit.setInfo();
+
+    int employees_salary = 0;
+    for (int i = 0; i < number_emp; i++){
+        employees_salary += worker[i].getSalary();
+    }
+    profit = Bank(employees_salary);
+
+    profit.setInfo();
 
 
     return 0;
