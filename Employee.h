@@ -25,16 +25,17 @@ public:
         this->salary = salary;
     }
 
-    Employee(std::string position, int salary){
-        if (this->salary > salary){
+    Employee(std::string position, int salary, std::string full_name, int age){
+        if (this->salary < salary){
             std::cout << std::endl << this->full_name << " has promotion " << std::endl;
         }
-        if (this->salary < salary){
+        if (this->salary > salary){
             std::cout << std::endl << this->full_name << " has demotion " << std::endl;
         }
         this->position = position;
         this->salary = salary;
-
+        this->full_name = full_name;
+        this->age = age;
     }
 
     void getInfo(){
@@ -46,6 +47,7 @@ public:
 
     std::string getFullName(){return full_name;}
     int getSalary(){return salary;}
+    int getAge(){return age;}
 };
 
 

@@ -3,16 +3,16 @@
 #include "Bank.h"
 
 int main() {
-    int n;
+    int number_emp;
     std::cout << "enter number of employee: ";
-    std::cin >> n;
+    std::cin >> number_emp;
 
-    Employee* worker = new Employee[n];
+    Employee* worker = new Employee[number_emp];
 
     std::string full_name, position;
     int salary, age;
 
-    for (int i = 0; i < n; i++){
+    for (int i = 0; i < number_emp; i++){
         std::cout << "Enter the worker's name: ";
         std::cin >> full_name;
 
@@ -43,7 +43,7 @@ int main() {
         std::cout << "put his Full Name: ";
         std::cin >> full_name;
 
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < number_emp; i++) {
             if (worker[i].getFullName() == full_name) {
                 std::string position;
                 int salary;
@@ -55,13 +55,24 @@ int main() {
                 int difference = salary - worker[i].getSalary();
                 std::cout << "salary rise on " << difference;
 
+                worker[i] = Employee(position, salary, worker[i].getFullName(), worker[i].getAge());
+
                 break;
             }
         }
     }
 
+    std::cout<<std::endl<<std::endl<<std::endl; // потрібно замінити на очищення екрану
 
+    std::cout << "Do you want see information about employee? " << std::endl;
+    std::cin >> question;
+    if (question == "yes"){
+        for (int i = 0; i < number_emp; i++){
+            worker[i].getInfo();
+        }
+    }
 
+    
 
     return 0;
 }
