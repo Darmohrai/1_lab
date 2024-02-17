@@ -36,7 +36,7 @@ public:
         this->salary = salary;
 
     }
-    
+
     void getInfo(){
         std::cout << std::endl << "full name: " << full_name << std::endl
         << "position: " << position << std::endl
