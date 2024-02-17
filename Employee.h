@@ -12,10 +12,11 @@ using namespace std;
 class Employee {
 private:
     string full_name;
-    int id;
+    string position;
     int age;
     int salary;
 
+public:
 
 };
 
