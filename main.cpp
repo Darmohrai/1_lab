@@ -28,17 +28,8 @@ int main() {
 
         for (int i = 0; i < number_emp; i++) {
             if (worker[i].getFullName() == full_name) {
-                std::string position;
-                int salary;
-                std::cout << "write new position: ";
-                std::cin >> position;
-                std::cout << "write new salary: ";
-                std::cin >> salary;
 
-                int difference = salary - worker[i].getSalary();
-                std::cout << "salary rise on " << difference;
-
-                worker[i] = Employee(position, salary, worker[i].getFullName(), worker[i].getAge());
+                worker[i] = Employee(worker[i].getSalary(), worker[i].getFullName(), worker[i].getAge());
 
                 break;
             }

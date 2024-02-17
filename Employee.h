@@ -29,18 +29,24 @@ public:
         std::cin >> this->salary;
     }
 
-    Employee(std::string position, int salary, std::string full_name, int age){
+    Employee(int salary, std::string full_name, int age){
         this->full_name = full_name;
         this->age = age;
 
-        if (this->salary < salary){
+        std::cout << "write new position: ";
+        std::cin >> this->position;
+        std::cout << "write new salary: ";
+        std::cin >> this->salary;
+
+        int difference = this->salary - salary;
+        std::cout << "salary rise on " << difference;
+
+        if (difference > 0){
             std::cout << std::endl << this->full_name << " has promotion " << std::endl;
         }
-        if (this->salary > salary){
+        if (difference < 0){
             std::cout << std::endl << this->full_name << " has demotion " << std::endl;
         }
-        this->position = position;
-        this->salary = salary;
     }
 
     void getInfo(){
