@@ -5,8 +5,17 @@
 #ifndef PAYMENT_SYSTEM_OOP_EMPLOYEE_H
 #define PAYMENT_SYSTEM_OOP_EMPLOYEE_H
 
+#include <string>
+
+using namespace std;
 
 class Employee {
+private:
+    string full_name;
+    int id;
+    int age;
+    int salary;
+
 
 };
 
