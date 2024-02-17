@@ -43,6 +43,9 @@ public:
         << "age: " << age << std::endl
         << "salary: " << salary << std::endl;
     }
+
+    std::string getFullName(){return full_name;}
+    int getSalary(){return salary;}
 };
 
 
