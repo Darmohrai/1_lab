@@ -6,18 +6,44 @@
 #define PAYMENT_SYSTEM_OOP_EMPLOYEE_H
 
 #include <string>
-
-using namespace std;
+#include <iostream>
 
 class Employee {
 private:
-    string full_name;
-    string position;
+    std::string full_name;
+    std::string position;
     int age;
     int salary;
 
 public:
+    Employee() : full_name("No_Info"), position("No_Info"), age(0), salary(0) {}
 
+    Employee(std::string full_name, std::string position, int age, int salary){
+        this->full_name = full_name;
+        this-> position = position;
+        this->age = age;
+        this->salary = salary;
+    }
+
+    Employee(std::string position, int salary){
+        if (this->salary > salary){
+            std::cout << std::endl << this->full_name << " has promotion " << std::endl;
+        }
+        if (this->salary < salary){
+            std::cout << std::endl << this->full_name << " has demotion " << std::endl;
+        }
+        this->position = position;
+        this->salary = salary;
+
+    }
+
+
+    void getInfo(){
+        std::cout << "full name: " << full_name << std::endl
+        << "position: " << position << std::endl
+        << "age: " << age << std::endl
+        << "salary: " << salary << std::endl;
+    }
 };
 
 
