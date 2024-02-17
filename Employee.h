@@ -36,22 +36,9 @@ public:
         this->salary = salary;
 
     }
-
-    void setFullName(std::string full_name){
-        this->full_name = full_name;
-    }
-    void setPosition(std::string position){
-        this->position = position;
-    }
-    void setAge(int age){
-        this->age = age;
-    }
-    void setSalary(int salary){
-        this->salary = salary;
-    }
-
+    
     void getInfo(){
-        std::cout << "full name: " << full_name << std::endl
+        std::cout << std::endl << "full name: " << full_name << std::endl
         << "position: " << position << std::endl
         << "age: " << age << std::endl
         << "salary: " << salary << std::endl;

@@ -26,7 +26,7 @@ int main() {
 
         worker[i] = Employee(full_name, position, age, salary);
 
-        worker[i].getInfo();
+        //worker[i].getInfo();
     }
 
     return 0;
