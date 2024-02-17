@@ -53,12 +53,15 @@ int main() {
 
     int employees_salary = 0;
     for (int i = 0; i < number_emp; i++){
-        employees_salary += worker[i].getSalary();
+        employees_salary = employees_salary + worker[i].getSalary();
     }
-    profit = Bank(employees_salary);
 
-    profit.setInfo();
-
+    std::cout << "Do you want see information about profit? " << std::endl;
+    std::cin >> question;
+    if (question == "yes") {
+        profit.getInfo();
+        profit = Bank(employees_salary, profit.getMonthlyProfit());
+    }
 
     return 0;
 }
