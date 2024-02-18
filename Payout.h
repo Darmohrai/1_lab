@@ -34,6 +34,7 @@ public:
         "Unexpected expenses: " << unexpected_expenses << std::endl;
     }
 
+    ~Payout(){ std::cout << std::endl << "info about payment is deleted now";};
 };
 
 

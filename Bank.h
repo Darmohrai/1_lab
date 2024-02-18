@@ -40,6 +40,7 @@ public:
         this-> workdays << " workdays" << std::endl;
     }
 
+    ~Bank(){};
 };
 
 

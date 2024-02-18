@@ -59,6 +59,8 @@ public:
     std::string getFullName() const {return full_name;}
     int getSalary() const {return salary;}
     int getAge() const {return age;}
+
+    ~Employee(){}
 };
 
 
