@@ -64,5 +64,10 @@ int main() {
         profit = Bank(employees_salary, profit.getMonthlyProfit());
     }
 
+    std::cout<<std::endl<<std::endl<<std::endl; // потрібно замінити на очищення екрану
+
+    Payout payment;
+    payment.getInfo();
+
     return 0;
 }
