@@ -16,21 +16,15 @@ private:
 public:
     Payout() : payment_day("Not established"), premium(0), unexpected_expenses(0){}
 
-    Payout(std::string &payment_day) : Payout(){
-        this->payment_day = payment_day;
-    }
+    Payout(std::string &payment_day);
 
-    Payout(int premium, std::string &payment_day) : Payout(payment_day){
-        this->premium = premium;
-    }
+    Payout(int premium, std::string &payment_day);
 
-    Payout(int unexpected_expenses, int premium, std::string &payment_day):Payout(premium, payment_day){
-        this->unexpected_expenses = unexpected_expenses;
-    }
+    Payout(int unexpected_expenses, int premium, std::string &payment_day);
 
     void getInfo();
 
-    ~Payout(){ std::cout << std::endl << "info about payment is deleted now";};
+    ~Payout(){ std::cout << std::endl << "info about payment is clear" << std::endl;}
 };
 
 
