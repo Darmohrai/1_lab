@@ -35,7 +35,7 @@ public:
     }
     void getInfo(){
         std::cout << std::endl << "In " <<
-        this->name_of_bank << " bank copany has " <<
+        this->name_of_bank << " bank company has " <<
         this-> monthly_profit << "usd in " <<
         this-> workdays << " workdays" << std::endl;
     }

@@ -29,7 +29,7 @@ public:
         std::cin >> this->salary;
     }
 
-    Employee(int salary, std::string full_name, int age){
+    Employee(int salary, std::string &full_name, int age){
         this->full_name = full_name;
         this->age = age;
 

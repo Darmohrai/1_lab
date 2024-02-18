@@ -30,7 +30,7 @@ int main() {
         for (int i = 0; i < number_emp; i++) {
             if (worker[i].getFullName() == full_name) {
 
-                worker[i] = Employee(worker[i].getSalary(), worker[i].getFullName(), worker[i].getAge());
+                worker[i] = Employee(worker[i].getSalary(), full_name, worker[i].getAge());
 
                 break;
             }
