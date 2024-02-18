@@ -15,7 +15,19 @@ private:
 public:
     Payout(){payment_day = "Тot established"; premium = 0; unexpected_expenses = 0;}
 
-    
+    Payout(std::string &payment_day){
+        this->payment_day = payment_day;
+    }
+
+    Payout(int premium, std::string &payment_day) : Payout(payment_day){
+        this->premium = premium;
+    }
+
+    Payout(int unexpected_expenses, int premium, std::string &payment_day):Payout(premium, payment_day){
+        this->unexpected_expenses = unexpected_expenses;
+    }
+
+    //Payout(int unexpected_expenses): Payout()
 };
 
 
