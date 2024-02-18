@@ -4,6 +4,10 @@
 
 #include "Bank.h"
 
+Bank::Bank(int employees_salary, int monthly_profit ){
+    std::cout << std::endl << "Net profit = " << (monthly_profit - employees_salary) << std::endl;
+}
+
 void Bank::setInfo(){
     std::cout << "Enter name of bank in which company save money: ";
     std::cin >> this->name_of_bank;

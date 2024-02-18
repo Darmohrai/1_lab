@@ -16,9 +16,7 @@ private:
 public:
     Bank(){name_of_bank = "None"; monthly_profit = 0; workdays = 0;}
 
-    Bank(int employees_salary, int monthly_profit ){
-        std::cout << std::endl << "Net profit = " << (monthly_profit - employees_salary) << std::endl;
-    }
+    Bank(int employees_salary, int monthly_profit );
 
     void setInfo();
 
