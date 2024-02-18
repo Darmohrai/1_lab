@@ -14,9 +14,9 @@ private:
     int premium;
     int unexpected_expenses;
 public:
-    Payout(){payment_day = "Not established"; premium = 0; unexpected_expenses = 0;}
+    Payout() : payment_day("Not established"), premium(0), unexpected_expenses(0){}
 
-    Payout(std::string &payment_day){
+    Payout(std::string &payment_day) : Payout(){
         this->payment_day = payment_day;
     }
 
