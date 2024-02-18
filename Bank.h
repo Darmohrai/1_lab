@@ -27,9 +27,10 @@ public:
         std::cin >> this->monthly_profit;
         std::cout << "Enter company's workdays: ";
         std::cin >> this->workdays;
+        std::cout << std::endl;
     }
 
-    int getMonthlyProfit(){
+    int getMonthlyProfit() const{
         return monthly_profit;
     }
     void getInfo(){

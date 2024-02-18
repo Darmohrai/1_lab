@@ -7,4 +7,6 @@ add_executable(payment_system_oop main.cpp
         Employee.cpp
         Employee.h
         Bank.cpp
-        Bank.h)
+        Bank.h
+        Payout.cpp
+        Payout.h)

@@ -19,7 +19,7 @@ public:
     Employee() : full_name("No_Info"), position("No_Info"), age(0), salary(0) {}
 
     Employee(int i){
-        std::cout << "Enter the worker's name: ";
+        std::cout << std::endl << "Enter the worker's name: ";
         std::cin >> this->full_name;
         std::cout << "Enter the worker's position: ";
         std::cin >> this-> position;
@@ -56,9 +56,9 @@ public:
         << "salary: " << salary << std::endl;
     }
 
-    std::string getFullName(){return full_name;}
-    int getSalary(){return salary;}
-    int getAge(){return age;}
+    std::string getFullName() const {return full_name;}
+    int getSalary() const {return salary;}
+    int getAge() const {return age;}
 };
 
 
