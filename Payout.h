@@ -28,11 +28,7 @@ public:
         this->unexpected_expenses = unexpected_expenses;
     }
 
-    void getInfo(){
-        std::cout << std::endl << "Payment day: " << payment_day << std::endl <<
-        "Premium for employees: " << premium << std::endl <<
-        "Unexpected expenses: " << unexpected_expenses << std::endl;
-    }
+    void getInfo();
 
     ~Payout(){ std::cout << std::endl << "info about payment is deleted now";};
 };

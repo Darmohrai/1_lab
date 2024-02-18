@@ -49,12 +49,7 @@ public:
         }
     }
 
-    void getInfo(){
-        std::cout << std::endl << "full name: " << full_name << std::endl
-        << "position: " << position << std::endl
-        << "age: " << age << std::endl
-        << "salary: " << salary << std::endl;
-    }
+    void getInfo();
 
     std::string getFullName() const {return full_name;}
     int getSalary() const {return salary;}
