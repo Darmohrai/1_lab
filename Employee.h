@@ -20,7 +20,7 @@ public:
 
     Employee(int i);
 
-    Employee(int salary, std::string &full_name, int age);
+    Employee(int salary, std::string full_name, int age);
 
     void getInfo();
 

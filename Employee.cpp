@@ -15,7 +15,7 @@ Employee::Employee(int i){
     std::cin >> this->salary;
 }
 
-Employee::Employee(int salary, std::string &full_name, int age){
+Employee::Employee(int salary, std::string full_name, int age){
     this->full_name = full_name;
     this->age = age;
 

@@ -4,7 +4,7 @@
 
 #include "Payout.h"
 
-Payout::Payout(std::string &payment_day) : Payout(){
+Payout::Payout(std::string &payment_day){
     this->payment_day = payment_day;
 }
 

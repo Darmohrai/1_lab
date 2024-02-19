@@ -3,6 +3,23 @@
 #include "Bank.h"
 #include "Payout.h"
 
+void BankQuestoin(Bank& profit ){
+    std::string name_of_bank;
+    int monthly_profit, workdays;
+
+    std::cout << "Enter name of bank in which company save money: ";
+    std::cin >> name_of_bank;
+    profit = Bank(name_of_bank);
+    std::cout << "Enter company monthly's profit: ";
+    std::cin >> monthly_profit;
+    profit = Bank(name_of_bank, monthly_profit);
+    std::cout << "Enter company's workdays: ";
+    std::cin >> workdays;
+    profit = Bank(name_of_bank, monthly_profit, workdays);
+    std::cout << std::endl;
+
+}
+
 int main() {
     int number_emp;
     std::cout << "enter number of employee: ";
@@ -50,7 +67,7 @@ int main() {
     std::cout<<std::endl<<std::endl<<std::endl; // потрібно замінити на очищення екрану
 
     Bank profit;
-    profit.setInfo();
+    BankQuestoin(profit);
 
     int employees_salary = 0;
     for (int i = 0; i < number_emp; i++){
@@ -61,7 +78,7 @@ int main() {
     std::cin >> question;
     if (question == "yes") {
         profit.getInfo();
-        profit = Bank(employees_salary, profit.getMonthlyProfit());
+        profit.NetProfit(employees_salary, profit.getMonthlyProfit());
     }
 
     std::cout<<std::endl<<std::endl<<std::endl; // потрібно замінити на очищення екрану
