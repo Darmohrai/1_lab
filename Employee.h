@@ -24,7 +24,7 @@ public:
 
     void getInfo();
 
-    std::string getFullName() const {return full_name;}
+    std::string getFull_Name() const {return full_name;}
     int getSalary() const {return salary;}
     int getAge() const {return age;}
 

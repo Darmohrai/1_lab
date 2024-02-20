@@ -17,9 +17,9 @@ public:
 
     Bank(std::string name_of_bank = "None", int monthly_profit = 0, int workdays = 0);
 
-    void NetProfit(int employees_salary, int monthly_profit );
+    void netProfit(int employees_salary, int monthly_profit );
 
-    int getMonthlyProfit() const{return monthly_profit;}
+    int getMonthly_Profit() const{return monthly_profit;}
 
     void getInfo();
 

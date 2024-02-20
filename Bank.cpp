@@ -10,7 +10,7 @@ Bank::Bank(std::string name_of_bank, int monthly_profit, int workdays){
     this->workdays = workdays;
 }
 
-void Bank::NetProfit(int employees_salary, int monthly_profit){
+void Bank::netProfit(int employees_salary, int monthly_profit){
     std::cout << std::endl << "Net profit = " << (monthly_profit - employees_salary) << std::endl;
 }
 

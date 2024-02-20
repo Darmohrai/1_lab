@@ -52,7 +52,7 @@ int main() {
         std::cin >> full_name;
 
         for (int i = 0; i < number_emp; i++) {
-            if (worker[i].getFullName() == full_name) {
+            if (worker[i].getFull_Name() == full_name) {
 
                 worker[i] = Employee(worker[i].getSalary(), full_name, worker[i].getAge());
 
@@ -85,7 +85,7 @@ int main() {
     std::cin >> question;
     if (question == "yes") {
         profit.getInfo();
-        profit.NetProfit(employees_salary, profit.getMonthlyProfit());
+        profit.netProfit(employees_salary, profit.getMonthly_Profit());
     }
 
     std::cout<<std::endl<<std::endl<<std::endl; // потрібно замінити на очищення екрану
