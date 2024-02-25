@@ -4,53 +4,19 @@
 
 #include "Bank.h"
 
-Bank::Bank(std::string name_of_bank, int monthly_profit, int workdays) {
+Bank::Bank(std::string name_of_bank, int monthly_profit, int workdays){
     this->name_of_bank = name_of_bank;
     this->monthly_profit = monthly_profit;
     this->workdays = workdays;
 }
 
-Bank::Bank(const Bank &profit) {
-    assets = new int [3];
-    for(int i = 0; i < 3; i++){
-        assets[i] = profit.assets[i];
-    }
-}
-
-void Bank::netProfit(int employees_salary, int monthly_profit) {
+void Bank::netProfit(int employees_salary, int monthly_profit){
     std::cout << std::endl << "Net profit = " << (monthly_profit - employees_salary) << std::endl;
 }
 
-
-
-void Bank::setAssets() {
-    std::cout << "Write yor bank assets " << std::endl;
-
-    assets = new int [3];
-
-    int money;
-    std::cout << "uah: ";
-    std::cin >> money;
-    assets[0] = money;
-
-    std::cout << "usd: ";
-    std::cin >> money;
-    assets[1] = money;
-
-    std::cout << "eur: ";
-    std::cin >> money;
-    assets[2] = money;
-
-}
-
-int Bank::getAssets(int i) {
-    return assets[i];
-}
-
-
-void Bank::getInfo() {
+void Bank::getInfo(){
     std::cout << std::endl << "In " <<
               this->name_of_bank << " bank company has " <<
-              this->monthly_profit << "usd in " <<
-              this->workdays << " workdays" << std::endl;
+              this-> monthly_profit << "usd in " <<
+              this-> workdays << " workdays" << std::endl;
 }
