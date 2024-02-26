@@ -22,9 +22,16 @@ public:
 
     Payout(int unexpected_expenses, int premium, std::string &payment_day);
 
+    Payout(Payout && payment);
+
+    Payout& operator = (Payout &&other) {
+        this->~Payout();
+        return *new(this) Payout(std::move(other));
+    }
+
     void getInfo();
 
-    ~Payout(){ std::cout << std::endl << "info about payment is clear" << std::endl;}
+    ~Payout(){}
 };
 
 

@@ -3,8 +3,11 @@
 #include "Bank.h"
 #include "Payout.h"
 
-void BankQuestoin(Bank &profit, std::string &question);
+void BankQuestoin(Bank& profit, std::string &question);
+
 void GetBankAssets(Bank profit);
+
+Payout SetPayInfo(std::string& question);
 
 int main() {
     int number_emp;
@@ -40,6 +43,7 @@ int main() {
         }
     }
 
+
     std::cout << std::endl << std::endl << std::endl; // потрібно замінити на очищення екрану
 
 
@@ -56,6 +60,7 @@ int main() {
     Bank profit;
     BankQuestoin(profit, question);
 
+
     int employees_salary = 0;
     for (int i = 0; i < number_emp; i++) {
         employees_salary = employees_salary + worker[i].getSalary();
@@ -71,7 +76,9 @@ int main() {
     std::cout << std::endl << std::endl << std::endl; // потрібно замінити на очищення екрану
 
     Payout payment;
-    int unexpected_expenses;
+
+    payment = Payout(SetPayInfo(question));
+ /*   int unexpected_expenses;
     int premium = 0;
     std::string payment_day;
 
@@ -94,7 +101,7 @@ int main() {
                 payment = Payout(unexpected_expenses, premium, payment_day);
             }
         }
-    }
+    }*/
 
     std::cout << std::endl << std::endl << std::endl; // потрібно замінити на очищення екрану
 
@@ -109,10 +116,11 @@ int main() {
     std::cin >> question;
     if (question == "yes") GetBankAssets(profit);
 
+    delete[] worker;
     return 0;
 }
 
-void BankQuestoin(Bank &profit, std::string &question) {
+void BankQuestoin(Bank& profit, std::string &question) {
 
     int monthly_profit, workdays;
 
@@ -134,19 +142,48 @@ void BankQuestoin(Bank &profit, std::string &question) {
     }
 }
 
-void GetBankAssets(Bank profit){
-    std::cout<<std::endl;
+void GetBankAssets(Bank profit) {
+    std::cout << std::endl;
     for (int i = 0; i < 3; i++) {
-        if (i == 0){
+        if (i == 0) {
             std::cout << "Bank assets in uah: ";
         }
-        if (i == 1){
+        if (i == 1) {
             std::cout << "Bank assets in usd: ";
         }
-        if (i == 2){
+        if (i == 2) {
             std::cout << "Bank assets in eur: ";
         }
 
         std::cout << " " << profit.getAssets(i) << std::endl;
     }
+}
+
+Payout SetPayInfo(std::string & question){
+    int unexpected_expenses;
+    int premium = 0;
+    std::string payment_day;
+    Payout payment;
+
+    std::cout << "On what day is the salary payment scheduled? (write 'skip' to skip)" << std::endl;
+    std::cin >> question;
+    if (question != "skip") {
+        payment_day = question;
+        payment = Payout(payment_day);
+        std::cout << "Do you want enter premium? (write 'yes' or 'no')" << std::endl;
+        std::cin >> question;
+        if (question == "yes") {
+            std::cout << "How much is allocated for the premium? ";
+            std::cin >> premium;
+            payment = Payout(premium, payment_day);
+            std::cout << "Do you want enter unexpected expenses? (write 'yes' or 'no')" << std::endl;
+            std::cin >> question;
+            if (question == "yes") {
+                std::cout << "How much is unexpected expenses? ";
+                std::cin >> unexpected_expenses;
+                payment = Payout(unexpected_expenses, premium, payment_day);
+            }
+        }
+    }
+    return payment;
 }
