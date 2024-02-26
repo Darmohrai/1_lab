@@ -78,30 +78,6 @@ int main() {
     Payout payment;
 
     payment = Payout(SetPayInfo(question));
- /*   int unexpected_expenses;
-    int premium = 0;
-    std::string payment_day;
-
-    std::cout << "On what day is the salary payment scheduled? (write 'skip' to skip)" << std::endl;
-    std::cin >> question;
-    if (question != "skip") {
-        payment_day = question;
-        payment = Payout(payment_day);
-        std::cout << "Do you want enter premium? (write 'yes' or 'no')" << std::endl;
-        std::cin >> question;
-        if (question == "yes") {
-            std::cout << "How much is allocated for the premium? ";
-            std::cin >> premium;
-            payment = Payout(premium, payment_day);
-            std::cout << "Do you want enter unexpected expenses? (write 'yes' or 'no')" << std::endl;
-            std::cin >> question;
-            if (question == "yes") {
-                std::cout << "How much is unexpected expenses? ";
-                std::cin >> unexpected_expenses;
-                payment = Payout(unexpected_expenses, premium, payment_day);
-            }
-        }
-    }*/
 
     std::cout << std::endl << std::endl << std::endl; // потрібно замінити на очищення екрану
 
@@ -142,7 +118,7 @@ void BankQuestoin(Bank& profit, std::string &question) {
     }
 }
 
-void GetBankAssets(Bank profit) {
+void GetBankAssets(const Bank profit) {
     std::cout << std::endl;
     for (int i = 0; i < 3; i++) {
         if (i == 0) {

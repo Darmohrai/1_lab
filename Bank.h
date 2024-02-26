@@ -26,7 +26,7 @@ public:
     int getMonthly_Profit() const { return monthly_profit; }
 
     void setAssets();
-    int getAssets(int i);
+    int getAssets(int i) const ;
 
     void getInfo();
 

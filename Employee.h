@@ -16,7 +16,7 @@ private:
     int salary;
 
 public:
-    Employee() : full_name("No_Info"), position("No_Info"), age(0), salary(0) {}
+    Employee() : full_name("No_Info"), position("No_Info"), salary(0) {}
 
     Employee(int i);
 
@@ -26,7 +26,7 @@ public:
 
     std::string getFull_Name() const {return full_name;}
     int getSalary() const {return salary;}
-    int getAge() const {return age;}
+    int getAge() {return age;}
 
     ~Employee(){}
 };

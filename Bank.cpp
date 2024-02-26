@@ -4,6 +4,8 @@
 
 #include "Bank.h"
 
+static int money;
+
 Bank::Bank(std::string name_of_bank, int monthly_profit, int workdays) {
     this->name_of_bank = name_of_bank;
     this->monthly_profit = monthly_profit;
@@ -19,6 +21,7 @@ Bank::Bank(const Bank &profit) {
 
 void Bank::netProfit(int employees_salary, int monthly_profit) {
     std::cout << std::endl << "Net profit = " << (monthly_profit - employees_salary) << std::endl;
+
 }
 
 
@@ -28,7 +31,6 @@ void Bank::setAssets() {
 
     assets = new int [3];
 
-    int money;
     std::cout << "uah: ";
     std::cin >> money;
     assets[0] = money;
@@ -43,7 +45,7 @@ void Bank::setAssets() {
 
 }
 
-int Bank::getAssets(int i) {
+int Bank::getAssets(int i) const {
     return assets[i];
 }
 
