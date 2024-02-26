@@ -16,8 +16,7 @@ Employee::Employee(int i) {
 }
 
 Employee::Employee(int salary, std::string full_name, int age) {
-    static int numb_of_promotion;
-    numb_of_promotion++;
+    work_percentage++;
 
     this->full_name = full_name;
     this->age = age;
@@ -26,12 +25,6 @@ Employee::Employee(int salary, std::string full_name, int age) {
     std::cin >> this->position;
     std::cout << "write new salary: ";
     std::cin >> this->salary;
-
-    if (numb_of_promotion == 1) {
-        std::cout << std::endl << " At this moment promotion has " << numb_of_promotion << " person" << std::endl;
-    } else {
-        std::cout << std::endl << " At this moment promotion have " << numb_of_promotion << " people" << std::endl;
-    }
 }
 
 void Employee::getInfo() {
@@ -40,3 +33,5 @@ void Employee::getInfo() {
               << "age: " << age << std::endl
               << "salary: " << salary << std::endl;
 }
+
+int Employee::work_percentage;

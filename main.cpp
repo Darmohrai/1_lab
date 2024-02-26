@@ -53,6 +53,7 @@ int main() {
         for (int i = 0; i < number_emp; i++) {
             worker[i].getInfo();
         }
+        std:: cout << std::endl << "Promotion have " << worker->work_Percentage() << "employee";
     }
 
     std::cout << std::endl << std::endl << std::endl; // потрібно замінити на очищення екрану
