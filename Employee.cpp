@@ -16,7 +16,7 @@ Employee::Employee(int i) {
 }
 
 Employee::Employee(int salary, std::string full_name, int age) {
-    work_percentage++;
+    promotion++;
 
     this->full_name = full_name;
     this->age = age;
@@ -34,4 +34,8 @@ void Employee::getInfo() {
               << "salary: " << salary << std::endl;
 }
 
-int Employee::work_percentage;
+int Employee::operator+(const Employee &worker) const {
+    return int{ this-> getSalary() + worker.getSalary()};
+}
+
+int Employee::promotion;

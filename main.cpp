@@ -53,7 +53,7 @@ int main() {
         for (int i = 0; i < number_emp; i++) {
             worker[i].getInfo();
         }
-        std:: cout << std::endl << "Promotion have " << worker->work_Percentage() << "employee";
+        std:: cout << std::endl << "Promotion have " << worker->worker_promotion() << "employee";
     }
 
     std::cout << std::endl << std::endl << std::endl; // потрібно замінити на очищення екрану
@@ -63,8 +63,12 @@ int main() {
 
 
     int employees_salary = 0;
-    for (int i = 0; i < number_emp; i++) {
+    /*for (int i = 0; i < number_emp; i++) {
         employees_salary = employees_salary + worker[i].getSalary();
+    } //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+
+    for (int i = 0; i < number_emp; i=i+2) {
+        employees_salary = employees_salary + (worker[i] + worker[i+1]);
     }
 
     std::cout << "Do you want see information about profit? " << std::endl;

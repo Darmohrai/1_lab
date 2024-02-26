@@ -15,7 +15,7 @@ private:
     int age;
     int salary;
 
-    static int work_percentage;
+    static int promotion;
 public:
     Employee() : full_name("No_Info"), position("No_Info"), salary(0) {}
 
@@ -29,9 +29,11 @@ public:
     int getSalary() const {return salary;}
     int getAge() const {return age;}
 
-    static int work_Percentage(){
-        return work_percentage;
+    static int worker_promotion(){
+        return promotion;
     }
+
+    int operator + (const Employee& worker) const;
 
     ~Employee(){}
 };
