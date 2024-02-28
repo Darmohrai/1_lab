@@ -23,8 +23,6 @@ public:
 
     Employee(int salary, std::string full_name, int age);
 
-    void getInfo();
-
     std::string getFull_Name() const {return full_name;}
     int getSalary() const {return salary;}
     int getAge() const {return age;}
@@ -34,6 +32,14 @@ public:
     }
 
     int operator + (const Employee& worker) const;
+
+   friend std::ostream& operator<<(std::ostream &os, Employee &worker){
+        os << std::endl << "full name: " << worker.full_name << std::endl
+              << "position: " << worker.position << std::endl
+              << "age: " << worker.age << std::endl
+              << "salary: " << worker.salary << std::endl;;
+        return os;
+    }
 
     ~Employee(){}
 };

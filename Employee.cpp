@@ -27,13 +27,6 @@ Employee::Employee(int salary, std::string full_name, int age) {
     std::cin >> this->salary;
 }
 
-void Employee::getInfo() {
-    std::cout << std::endl << "full name: " << full_name << std::endl
-              << "position: " << position << std::endl
-              << "age: " << age << std::endl
-              << "salary: " << salary << std::endl;
-}
-
 int Employee::operator+(const Employee &worker) const {
     return int{ this-> getSalary() + worker.getSalary()};
 }

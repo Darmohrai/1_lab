@@ -10,6 +10,7 @@ void GetBankAssets(Bank profit);
 Payout SetPayInfo(std::string& question);
 
 int main() {
+
     int number_emp;
     std::cout << "enter number of employee: ";
     std::cin >> number_emp;
@@ -51,7 +52,7 @@ int main() {
     std::cin >> question;
     if (question == "yes") {
         for (int i = 0; i < number_emp; i++) {
-            worker[i].getInfo();
+            std::cout << worker[i];
         }
         std:: cout << std::endl << "Promotion have " << worker->worker_promotion() << "employee";
     }
@@ -63,9 +64,6 @@ int main() {
 
 
     int employees_salary = 0;
-    /*for (int i = 0; i < number_emp; i++) {
-        employees_salary = employees_salary + worker[i].getSalary();
-    } //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 
     for (int i = 0; i < number_emp; i=i+2) {
         employees_salary = employees_salary + (worker[i] + worker[i+1]);
@@ -97,8 +95,10 @@ int main() {
     std::cin >> question;
     if (question == "yes") GetBankAssets(profit);
 
+
     delete[] worker;
     return 0;
+
 }
 
 void BankQuestoin(Bank& profit, std::string &question) {

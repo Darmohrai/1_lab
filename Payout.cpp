@@ -20,7 +20,7 @@ Payout::Payout(Payout && payment) : payment_day{payment.payment_day},
  premium{payment.premium}, unexpected_expenses{payment.unexpected_expenses}{
     payment.payment_day = sizeof(std::nullptr_t);
     payment.premium = sizeof(std::nullptr_t);
-    payment.unexpected_expenses = NULL;
+    payment.unexpected_expenses = NULL; //jgdfghjkl
 }
 
 void Payout::getInfo(){
