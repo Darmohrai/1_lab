@@ -14,7 +14,9 @@ private:
     int annual_leave;
     int sick_leave;
 public:
-    FullTimeEmployee(int salary, std::string full_name, int age);
+    FullTimeEmployee() : salary(0), annual_leave(0), sick_leave(0){}
+
+    FullTimeEmployee(int salary, std::string full_name, int age, int sick_leave);
 
     FullTimeEmployee(int i);
 
@@ -31,11 +33,18 @@ public:
         return os;
     }
 
-    FullTimeEmployee& operator=(const FullTimeEmployee& worker) {
-        if (this != &worker) {
+    FullTimeEmployee& operator=(const FullTimeEmployee& other) {
+        if (this != &other) {
+            Employee::operator=(other);
+            salary = other.salary;
+            annual_leave = other.annual_leave;
+            sick_leave = other.sick_leave;
         }
         return *this;
     }
+
+    int getSick_leave(){ return this->sick_leave;}
+
 };
 
 

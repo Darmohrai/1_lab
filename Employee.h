@@ -29,8 +29,11 @@ public:
         return promotion;
     }
 
-    Employee& operator=(const Employee& worker) {
-        if (this != &worker) {
+    Employee& operator=(const Employee& other) {
+        if (this != &other) {
+            full_name = other.full_name;
+            position = other.position;
+            age = other.age;
         }
         return *this;
     }

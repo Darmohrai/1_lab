@@ -3,6 +3,7 @@
 #include "Bank.h"
 #include "Payout.h"
 #include "FullTimeEmployee.h"
+#include "PartTimeEmployee.h"
 
 void BankQuestoin(Bank& profit, std::string &question);
 
@@ -16,10 +17,10 @@ int main() {
     std::cout << "enter number of full time employee: ";
     std::cin >> number_emp;
 
-     FullTimeEmployee *worker = new FullTimeEmployee (number_emp);
+     FullTimeEmployee *full_time_worker = new FullTimeEmployee[number_emp];
 
-    for (int i = 1; i < number_emp; i++) {
-        worker[i] = FullTimeEmployee(i);
+    for (int i = 0; i < number_emp; i++) {
+        full_time_worker[i] = FullTimeEmployee(i);
     }
 
     std::cout << std::endl << std::endl << std::endl; // потрібно замінити на очищення екрану
@@ -36,9 +37,9 @@ int main() {
         std::cin >> full_name;
 
         for (int i = 0; i < number_emp; i++) {
-            if (worker[i].getFull_Name() == full_name) {
+            if (full_time_worker[i].getFull_Name() == full_name) {
 
-                worker[i] = FullTimeEmployee(worker[i].getSalary(), full_name, worker[i].getAge());
+                full_time_worker[i] = FullTimeEmployee(full_time_worker[i].getSalary(), full_name, full_time_worker[i].getAge(), full_time_worker->getSick_leave());
 
                 break;
             }
@@ -53,9 +54,45 @@ int main() {
     std::cin >> question;
     if (question == "yes") {
         for (int i = 0; i < number_emp; i++) {
-            std::cout << worker[i];
+            std::cout << full_time_worker[i];
         }
-        std:: cout << std::endl << "Promotion have " << worker->worker_promotion() << "employee";
+        std:: cout << std::endl << "Promotion have " << full_time_worker->worker_promotion() << "employee";
+    }
+
+    int employees_salary = 0;
+
+    for (int i = 0; i < number_emp; i=i+2) {
+        if(i+1 < number_emp){
+        employees_salary = employees_salary + (full_time_worker[i] + full_time_worker[i+1]);
+        }
+        else{
+            employees_salary = employees_salary + full_time_worker->getSalary();
+        }
+    }
+
+    std::cout << std::endl << std::endl << std::endl; // потрібно замінити на очищення екрану
+
+
+
+    std::cout << "enter number of part time employee: ";
+    std::cin >> number_emp;
+
+    PartTimeEmployee *part_time_worker = new PartTimeEmployee [number_emp];
+
+    for (int i = 0; i < number_emp; i++) {
+        part_time_worker[i] = PartTimeEmployee(i);
+    }
+
+    std::cout << "Do you want see information about employee? " << std::endl;
+    std::cin >> question;
+    if (question == "yes") {
+        for (int i = 0; i < number_emp; i++) {
+            std::cout << part_time_worker[i];
+        }
+    }
+
+    for (int i = 0; i < number_emp; i++) {
+        employees_salary = employees_salary + part_time_worker[i].getIncome();
     }
 
     std::cout << std::endl << std::endl << std::endl; // потрібно замінити на очищення екрану
@@ -91,7 +128,7 @@ int main() {
     if (question == "yes") GetBankAssets(profit);
 
 
-    delete[] worker;
+    delete[] full_time_worker;
     return 0;
 
 }

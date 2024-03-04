@@ -11,4 +11,6 @@ add_executable(payment_system_oop main.cpp
         Payout.cpp
         Payout.h
         FullTimeEmployee.cpp
-        FullTimeEmployee.h)
+        FullTimeEmployee.h
+        PartTimeEmployee.cpp
+        PartTimeEmployee.h)
