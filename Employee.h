@@ -9,36 +9,30 @@
 #include <iostream>
 
 class Employee {
-private:
+protected:
     std::string full_name;
     std::string position;
     int age;
-    int salary;
 
     static int promotion;
 public:
-    Employee() : full_name("No_Info"), position("No_Info"), salary(0) {}
+    Employee() : full_name("No_Info"), position("No_Info"){}
 
     Employee(int i);
 
-    Employee(int salary, std::string full_name, int age);
+    Employee(std::string full_name, int age);
 
     std::string getFull_Name() const {return full_name;}
-    int getSalary() const {return salary;}
     int getAge() const {return age;}
 
     static int worker_promotion(){
         return promotion;
     }
 
-    int operator + (const Employee& worker) const;
-
-   friend std::ostream& operator<<(std::ostream &os, Employee &worker){
-        os << std::endl << "full name: " << worker.full_name << std::endl
-              << "position: " << worker.position << std::endl
-              << "age: " << worker.age << std::endl
-              << "salary: " << worker.salary << std::endl;;
-        return os;
+    Employee& operator=(const Employee& worker) {
+        if (this != &worker) {
+        }
+        return *this;
     }
 
     ~Employee(){}

@@ -2,6 +2,7 @@
 #include "Employee.h"
 #include "Bank.h"
 #include "Payout.h"
+#include "FullTimeEmployee.h"
 
 void BankQuestoin(Bank& profit, std::string &question);
 
@@ -12,13 +13,13 @@ Payout SetPayInfo(std::string& question);
 int main() {
 
     int number_emp;
-    std::cout << "enter number of employee: ";
+    std::cout << "enter number of full time employee: ";
     std::cin >> number_emp;
 
-    Employee *worker = new Employee[number_emp];
+     FullTimeEmployee *worker = new FullTimeEmployee (number_emp);
 
-    for (int i = 0; i < number_emp; i++) {
-        worker[i] = Employee(i);
+    for (int i = 1; i < number_emp; i++) {
+        worker[i] = FullTimeEmployee(i);
     }
 
     std::cout << std::endl << std::endl << std::endl; // потрібно замінити на очищення екрану
@@ -37,7 +38,7 @@ int main() {
         for (int i = 0; i < number_emp; i++) {
             if (worker[i].getFull_Name() == full_name) {
 
-                worker[i] = Employee(worker[i].getSalary(), full_name, worker[i].getAge());
+                worker[i] = FullTimeEmployee(worker[i].getSalary(), full_name, worker[i].getAge());
 
                 break;
             }
@@ -63,17 +64,11 @@ int main() {
     BankQuestoin(profit, question);
 
 
-    int employees_salary = 0;
-
-    for (int i = 0; i < number_emp; i=i+2) {
-        employees_salary = employees_salary + (worker[i] + worker[i+1]);
-    }
-
     std::cout << "Do you want see information about profit? " << std::endl;
     std::cin >> question;
     if (question == "yes") {
         profit.getInfo();
-        profit.netProfit(employees_salary, profit.getMonthly_Profit());
+        //profit.netProfit(employees_salary, profit.getMonthly_Profit());
     }
 
     std::cout << std::endl << std::endl << std::endl; // потрібно замінити на очищення екрану
