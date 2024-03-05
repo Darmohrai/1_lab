@@ -7,12 +7,14 @@
 
 #include <string>
 #include <iostream>
+#include "Payout.h"
 
 class Bank {
 private:
     std::string name_of_bank;
     int monthly_profit;
     int workdays;
+    Payout expencess;
 
     int* assets = nullptr;
 public:
@@ -21,14 +23,24 @@ public:
 
     Bank(const Bank& profit);
 
-    void netProfit(int employees_salary, int monthly_profit);
+    void netProfit(int employees_salary, int monthly_profit, Payout& profit);
 
     int getMonthly_Profit() const { return monthly_profit; }
 
     void setAssets();
     int getAssets(int i) const ;
 
+
     void getInfo();
+
+    Bank& operator=(const Bank& other) {
+        if (this != &other) {
+            this->name_of_bank = other.name_of_bank;
+            this->monthly_profit = other.monthly_profit;
+            this->workdays = other.workdays;
+        }
+        return *this;
+    }
 
     ~Bank() {};
 };

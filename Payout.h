@@ -30,7 +30,15 @@ public:
         return *new(this) Payout(std::move(other));
     }
 
+    int getExpencess(){ return premium + unexpected_expenses;}
+
     void getInfo();
+
+    Payout(const Payout& other) {
+        payment_day = other.payment_day;
+        premium = other.premium;
+        unexpected_expenses = other.unexpected_expenses;
+    }
 
     ~Payout(){}
 };

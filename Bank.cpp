@@ -19,8 +19,9 @@ Bank::Bank(const Bank &profit) {
     }
 }
 
-void Bank::netProfit(int employees_salary, int monthly_profit) {
-    std::cout << std::endl << "Net profit = " << (monthly_profit - employees_salary) << std::endl;
+void Bank::netProfit(int employees_salary, int monthly_profit, Payout& profit) {
+    expencess = Payout(profit);
+    std::cout << std::endl << "Net profit = " << (monthly_profit - employees_salary - expencess.getExpencess()) << std::endl;
 
 }
 

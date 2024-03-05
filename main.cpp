@@ -97,17 +97,6 @@ int main() {
 
     std::cout << std::endl << std::endl << std::endl; // потрібно замінити на очищення екрану
 
-    Bank profit;
-    BankQuestoin(profit, question);
-
-
-    std::cout << "Do you want see information about profit? " << std::endl;
-    std::cin >> question;
-    if (question == "yes") {
-        profit.getInfo();
-        //profit.netProfit(employees_salary, profit.getMonthly_Profit());
-    }
-
     std::cout << std::endl << std::endl << std::endl; // потрібно замінити на очищення екрану
 
     Payout payment;
@@ -117,6 +106,17 @@ int main() {
     std::cout << std::endl << std::endl << std::endl; // потрібно замінити на очищення екрану
 
     payment.getInfo();
+
+    Bank profit;
+    BankQuestoin(profit, question);
+
+
+    std::cout << "Do you want see information about profit? " << std::endl;
+    std::cin >> question;
+    if (question == "yes") {
+        profit.getInfo();
+        profit.netProfit(employees_salary, profit.getMonthly_Profit(), payment);
+    }
 
 
     std::cout << std::endl << std::endl << std::endl; // потрібно замінити на очищення екрану
