@@ -24,14 +24,7 @@ public:
 
     int getSalary() const {return salary;}
 
-    friend std::ostream& operator<<(std::ostream &os, FullTimeEmployee &worker){
-        os << std::endl << "full name: " << worker.full_name << std::endl
-           << "position: " << worker.position << std::endl
-           << "age: " << worker.age << std::endl<< "salary: " << worker.salary << std::endl
-           << "annual leave: " << worker.annual_leave << std::endl
-           << "sick leave: " << worker.sick_leave << std::endl;
-        return os;
-    }
+    friend std::ostream& operator<<(std::ostream &os, FullTimeEmployee &worker);
 
     FullTimeEmployee& operator=(const FullTimeEmployee& other) {
         if (this != &other) {
@@ -44,6 +37,19 @@ public:
     }
 
     int getSick_leave(){ return this->sick_leave;}
+
+    FullTimeEmployee(const FullTimeEmployee& other) : Employee(other) {
+        salary = other.salary;
+        annual_leave = other.annual_leave;
+        sick_leave = other.sick_leave;
+    }
+
+    FullTimeEmployee(FullTimeEmployee&& other) : Employee(other), salary{other.salary},
+    annual_leave{other.annual_leave}, sick_leave{other.sick_leave}{
+        other.salary = 0;
+        other.sick_leave = 0;
+        other.annual_leave = 0;
+    }
 
 };
 

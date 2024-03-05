@@ -9,6 +9,8 @@ void BankQuestoin(Bank& profit, std::string &question);
 
 void GetBankAssets(Bank profit);
 
+int Employee_salary(FullTimeEmployee* full_time_worker, int number_emp, int employees_salary);
+
 Payout SetPayInfo(std::string& question);
 
 int main() {
@@ -50,7 +52,7 @@ int main() {
     std::cout << std::endl << std::endl << std::endl; // потрібно замінити на очищення екрану
 
 
-    std::cout << "Do you want see information about employee? " << std::endl;
+    std::cout << "Do you want see information about full time employee? " << std::endl;
     std::cin >> question;
     if (question == "yes") {
         for (int i = 0; i < number_emp; i++) {
@@ -61,14 +63,15 @@ int main() {
 
     int employees_salary = 0;
 
-    for (int i = 0; i < number_emp; i=i+2) {
+    /*for (int i = 0; i < number_emp; i=i+2) {
         if(i+1 < number_emp){
         employees_salary = employees_salary + (full_time_worker[i] + full_time_worker[i+1]);
         }
         else{
             employees_salary = employees_salary + full_time_worker->getSalary();
         }
-    }
+    }*/
+    employees_salary = Employee_salary(full_time_worker, number_emp, employees_salary);
 
     std::cout << std::endl << std::endl << std::endl; // потрібно замінити на очищення екрану
 
@@ -83,7 +86,7 @@ int main() {
         part_time_worker[i] = PartTimeEmployee(i);
     }
 
-    std::cout << "Do you want see information about employee? " << std::endl;
+    std::cout << "Do you want see information about part time employee? " << std::endl;
     std::cin >> question;
     if (question == "yes") {
         for (int i = 0; i < number_emp; i++) {
@@ -199,4 +202,16 @@ Payout SetPayInfo(std::string & question){
         }
     }
     return payment;
+}
+
+int Employee_salary(FullTimeEmployee* full_time_worker, int number_emp, int employees_salary){
+    for (int i = 0; i < number_emp; i=i+2) {
+        if(i+1 < number_emp){
+            employees_salary = employees_salary + (full_time_worker[i] + full_time_worker[i+1]);
+        }
+        else{
+            employees_salary = employees_salary + full_time_worker->getSalary();
+        }
+    }
+    return  employees_salary;
 }
