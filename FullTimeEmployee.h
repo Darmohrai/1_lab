@@ -51,6 +51,7 @@ public:
         other.annual_leave = 0;
     }
 
+    ~FullTimeEmployee(){};
 };
 
 

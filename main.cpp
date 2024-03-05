@@ -63,14 +63,6 @@ int main() {
 
     int employees_salary = 0;
 
-    /*for (int i = 0; i < number_emp; i=i+2) {
-        if(i+1 < number_emp){
-        employees_salary = employees_salary + (full_time_worker[i] + full_time_worker[i+1]);
-        }
-        else{
-            employees_salary = employees_salary + full_time_worker->getSalary();
-        }
-    }*/
     employees_salary = Employee_salary(full_time_worker, number_emp, employees_salary);
 
     std::cout << std::endl << std::endl << std::endl; // потрібно замінити на очищення екрану

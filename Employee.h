@@ -7,23 +7,22 @@
 
 #include <string>
 #include <iostream>
+#include "Human.h"
 
-class Employee {
+class Employee : public Human{
 protected:
-    std::string full_name;
     std::string position;
-    int age;
 
     static int promotion;
 public:
-    Employee() : full_name("No_Info"), position("No_Info"){}
+    Employee() : position("No_Info"){};
 
     Employee(int i);
 
     Employee(std::string full_name, int age);
 
-    std::string getFull_Name() const {return full_name;}
-    int getAge() const {return age;}
+    //std::string getFull_Name() const {return full_name;}
+    //int getAge() const {return age;}
 
     static int worker_promotion(){
         return promotion;
@@ -31,14 +30,15 @@ public:
 
     Employee& operator=(const Employee& other) {
         if (this != &other) {
-            full_name = other.full_name;
+            Human::operator=(other);
             position = other.position;
-            age = other.age;
         }
         return *this;
     }
 
-    ~Employee(){}
+
+
+    ~Employee(){};
 };
 
 #endif //PAYMENT_SYSTEM_OOP_EMPLOYEE_H

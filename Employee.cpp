@@ -13,10 +13,7 @@ Employee::Employee(int i) {
     std::cin >> this->age;
 }
 
-Employee::Employee(std::string full_name, int age) {
-
-    this->full_name = full_name;
-    this->age = age;
+Employee::Employee(std::string full_name, int age) : Human(full_name, age) {
 
     std::cout << "write new position: ";
     std::cin >> this->position;
