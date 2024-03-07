@@ -29,3 +29,9 @@ void Payout::getInfo(){
               "Unexpected expenses: " << unexpected_expenses << std::endl;
 }
 
+Payout::Payout(const Payout& other) {
+    payment_day = other.payment_day;
+    premium = other.premium;
+    unexpected_expenses = other.unexpected_expenses;
+}
+

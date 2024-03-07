@@ -21,13 +21,7 @@ public:
 
     int operator + (const PartTimeEmployee& worker) const;
 
-    friend std::ostream& operator<<(std::ostream &os, PartTimeEmployee &worker){
-        os << std::endl << "full name: " << worker.full_name << std::endl
-           << "position: " << worker.position << std::endl
-           << "age: " << worker.age << std::endl<< "salary: " << worker.hours_of_work << std::endl
-           << "annual leave: " << worker.hourly_rate << std::endl;
-        return os;
-    }
+    friend std::ostream& operator<<(std::ostream &os, PartTimeEmployee &worker);
 
     PartTimeEmployee& operator=(const PartTimeEmployee& other) {
         if (this != &other) {

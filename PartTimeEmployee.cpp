@@ -15,3 +15,11 @@ PartTimeEmployee::PartTimeEmployee(int i) : Employee(i){
 int PartTimeEmployee::operator+(const PartTimeEmployee &worker) const {
     return int{ this->getIncome() + worker.getIncome()};
 }
+
+std::ostream& operator<<(std::ostream &os, PartTimeEmployee &worker){
+    os << std::endl << "full name: " << worker.full_name << std::endl
+       << "position: " << worker.position << std::endl
+       << "age: " << worker.age << std::endl<< "salary: " << worker.hours_of_work << std::endl
+       << "annual leave: " << worker.hourly_rate << std::endl;
+    return os;
+}

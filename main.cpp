@@ -1,5 +1,4 @@
 #include <iostream>
-#include "Employee.h"
 #include "Bank.h"
 #include "Payout.h"
 #include "FullTimeEmployee.h"
@@ -13,6 +12,8 @@ int Employee_salary(FullTimeEmployee* full_time_worker, int number_emp, int empl
 
 Payout SetPayInfo(std::string& question);
 
+void gap();
+
 int main() {
 
     int number_emp;
@@ -25,7 +26,7 @@ int main() {
         full_time_worker[i] = FullTimeEmployee(i);
     }
 
-    std::cout << std::endl << std::endl << std::endl; // потрібно замінити на очищення екрану
+    gap();
 
     std::string question = "yes";
     while (question == "yes") {
@@ -49,7 +50,7 @@ int main() {
     }
 
 
-    std::cout << std::endl << std::endl << std::endl; // потрібно замінити на очищення екрану
+    gap();
 
 
     std::cout << "Do you want see information about full time employee? " << std::endl;
@@ -65,8 +66,7 @@ int main() {
 
     employees_salary = Employee_salary(full_time_worker, number_emp, employees_salary);
 
-    std::cout << std::endl << std::endl << std::endl; // потрібно замінити на очищення екрану
-
+    gap();
 
 
     std::cout << "enter number of part time employee: ";
@@ -90,15 +90,13 @@ int main() {
         employees_salary = employees_salary + part_time_worker[i].getIncome();
     }
 
-    std::cout << std::endl << std::endl << std::endl; // потрібно замінити на очищення екрану
-
-    std::cout << std::endl << std::endl << std::endl; // потрібно замінити на очищення екрану
+    gap();
 
     Payout payment;
 
     payment = Payout(SetPayInfo(question));
 
-    std::cout << std::endl << std::endl << std::endl; // потрібно замінити на очищення екрану
+    gap();
 
     payment.getInfo();
 
@@ -114,7 +112,7 @@ int main() {
     }
 
 
-    std::cout << std::endl << std::endl << std::endl; // потрібно замінити на очищення екрану
+    gap();
 
     profit.setAssets();
 
@@ -124,6 +122,7 @@ int main() {
 
 
     delete[] full_time_worker;
+    delete[] part_time_worker;
     return 0;
 
 }
@@ -207,3 +206,5 @@ int Employee_salary(FullTimeEmployee* full_time_worker, int number_emp, int empl
     }
     return  employees_salary;
 }
+
+void gap(){std::cout << std::endl << std::endl << std::endl;} // потрібно замінити на очищення екрану
