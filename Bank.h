@@ -8,8 +8,9 @@
 #include <string>
 #include <iostream>
 #include "Payout.h"
+#include "Company.h"
 
-class Bank {
+class Bank : public Company {
 private:
     std::string name_of_bank;
     int monthly_profit;
@@ -41,6 +42,8 @@ public:
         }
         return *this;
     }
+
+    virtual void showFunds() override;
 
     ~Bank() {};
 };

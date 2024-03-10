@@ -21,6 +21,7 @@ Bank::Bank(const Bank &profit) {
 
 void Bank::netProfit(int employees_salary, int monthly_profit, Payout& profit) {
     expencess = Payout(profit);
+    money = (monthly_profit - employees_salary - expencess.getExpencess());
     std::cout << std::endl << "Net profit = " << (monthly_profit - employees_salary - expencess.getExpencess()) << std::endl;
 
 }
@@ -56,4 +57,8 @@ void Bank::getInfo() {
               this->name_of_bank << " bank company has " <<
               this->monthly_profit << "usd in " <<
               this->workdays << " workdays" << std::endl;
+}
+
+void Bank::showFunds() {
+    std::cout << "Founds of company in bank: " << getFinance() << "\n";
 }

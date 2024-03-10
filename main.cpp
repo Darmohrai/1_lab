@@ -15,12 +15,15 @@ Payout SetPayInfo(std::string& question);
 void gap();
 
 int main() {
+    Company* year_profit = new Bank;
+    year_profit->setFinance();
+    year_profit->showFunds();
 
     int number_emp;
     std::cout << "enter number of full time employee: ";
     std::cin >> number_emp;
 
-     FullTimeEmployee *full_time_worker = new FullTimeEmployee[number_emp];
+    auto *full_time_worker = new FullTimeEmployee[number_emp];
 
     for (int i = 0; i < number_emp; i++) {
         full_time_worker[i] = FullTimeEmployee(i);
@@ -72,7 +75,7 @@ int main() {
     std::cout << "enter number of part time employee: ";
     std::cin >> number_emp;
 
-    PartTimeEmployee *part_time_worker = new PartTimeEmployee [number_emp];
+    auto *part_time_worker = new PartTimeEmployee [number_emp];
 
     for (int i = 0; i < number_emp; i++) {
         part_time_worker[i] = PartTimeEmployee(i);
@@ -103,7 +106,6 @@ int main() {
     Bank profit;
     BankQuestoin(profit, question);
 
-
     std::cout << "Do you want see information about profit? " << std::endl;
     std::cin >> question;
     if (question == "yes") {
@@ -121,6 +123,7 @@ int main() {
     if (question == "yes") GetBankAssets(profit);
 
 
+    delete[] year_profit;
     delete[] full_time_worker;
     delete[] part_time_worker;
     return 0;
