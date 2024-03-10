@@ -15,9 +15,14 @@ Payout SetPayInfo(std::string& question);
 void gap();
 
 int main() {
-    Company* year_profit = new Bank;
-    year_profit->setFinance();
-    year_profit->showFunds();
+    Company* february = new Bank;
+    february->setFinance();
+    february->showFunds();
+
+    Bank march_m;
+    Company& march = march_m;
+    march.setFinance();
+    march.showFunds();
 
     int number_emp;
     std::cout << "enter number of full time employee: ";
@@ -56,13 +61,18 @@ int main() {
     gap();
 
 
-    std::cout << "Do you want see information about full time employee? " << std::endl;
+    std::cout << "Do you want see information about full time employee? (full or brief)" << std::endl;
     std::cin >> question;
-    if (question == "yes") {
+    if (question == "full") {
         for (int i = 0; i < number_emp; i++) {
             std::cout << full_time_worker[i];
         }
         std:: cout << std::endl << "Promotion have " << full_time_worker->worker_promotion() << "employee";
+    }
+    if (question == "brief"){
+        for (int i = 0; i < number_emp; i++) {
+            full_time_worker->getBriefInfo();
+        }
     }
 
     int employees_salary = 0;
@@ -123,7 +133,7 @@ int main() {
     if (question == "yes") GetBankAssets(profit);
 
 
-    delete[] year_profit;
+    delete[] february;
     delete[] full_time_worker;
     delete[] part_time_worker;
     return 0;

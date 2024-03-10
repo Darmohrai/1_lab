@@ -21,9 +21,6 @@ public:
 
     Employee(std::string full_name, int age);
 
-    //std::string getFull_Name() const {return full_name;}
-    //int getAge() const {return age;}
-
     static int worker_promotion(){
         return promotion;
     }
@@ -34,6 +31,10 @@ public:
             position = other.position;
         }
         return *this;
+    }
+
+    virtual void getBriefInfo(){
+        std::cout << full_name << " " << position;
     }
 
     ~Employee(){};

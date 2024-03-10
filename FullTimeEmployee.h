@@ -51,6 +51,10 @@ public:
         other.annual_leave = 0;
     }
 
+    virtual void getBriefInfo(){
+        std::cout << full_name << " " << position << " salary - " << salary;
+    }
+
     ~FullTimeEmployee(){};
 };
 

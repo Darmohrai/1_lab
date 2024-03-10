@@ -16,6 +16,8 @@ public:
 
     void setFinance();
     int getFinance(){ return finance;}
+
+    virtual ~Company(){}
 };
 
 

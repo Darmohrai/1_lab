@@ -27,7 +27,9 @@ public:
         return *this;
     }
 
-    ~Human(){};
+    virtual void getBriefInfo() = 0;
+
+    virtual ~Human(){};
 };
 
 
