@@ -7,7 +7,7 @@
 
 #include <iostream>
 
-class Human {
+class Human{
 protected:
     std::string full_name;
     int age;
@@ -19,13 +19,13 @@ public:
     std::string getFull_Name() const {return full_name;}
     int getAge() const {return age;}
 
-    Human& operator=(const Human& other) {
+    /*Human& operator=(const Human& other) {
         if (this != &other) {
             full_name = other.full_name;
             age = other.age;
         }
         return *this;
-    }
+    }*/
 
     virtual void getBriefInfo() = 0;
 

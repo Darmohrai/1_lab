@@ -6,8 +6,9 @@
 #define PAYMENT_SYSTEM_OOP_COMPANY_H
 #include <string>
 #include <iostream>
+#include "Interface.h"
 
-class Company {
+class Company : Interface {
 private:
     std::string name_of_company;
     int finance;

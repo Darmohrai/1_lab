@@ -32,7 +32,8 @@ public:
     int getAssets(int i) const ;
 
 
-    void getInfo();
+    void getInfo() override;
+    const int getMoney() override{ return this->monthly_profit;}
 
     Bank& operator=(const Bank& other) {
         if (this != &other) {

@@ -7,8 +7,9 @@
 
 #include <string>
 #include <iostream>
+#include "Interface.h"
 
-class Payout {
+class Payout : Interface{
 private:
     std::string payment_day;
     int premium;
@@ -32,7 +33,8 @@ public:
 
     int getExpencess(){ return premium + unexpected_expenses;}
 
-    void getInfo();
+    void getInfo() override;
+    const int getMoney() override{ std::cout << "premium - " << this->premium; return this->premium;}
 
     Payout(const Payout& other);
 

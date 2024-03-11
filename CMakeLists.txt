@@ -17,4 +17,6 @@ add_executable(payment_system_oop main.cpp
         Human.cpp
         Human.h
         Company.cpp
-        Company.h)
+        Company.h
+        Interface.cpp
+        Interface.h)
