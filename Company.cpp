@@ -8,7 +8,16 @@ void Company::showFunds() {
     std::cout << "Founds of company: " << finance;
 }
 
+void Company::showName_of_company(){
+    std::cout << "Name of company: " << name_of_company;
+}
+
 void Company::setFinance() {
     std::cout << "Set finance of company: ";
     std::cin >> finance;
+}
+
+void Company::setName_of_company(){
+    std::cout << "Set name of company: ";
+    std::cin >> name_of_company;
 }

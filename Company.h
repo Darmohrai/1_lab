@@ -14,9 +14,12 @@ private:
     int finance;
 public:
     virtual void showFunds();
+    virtual void showName_of_company();
 
+    void setName_of_company();
     void setFinance();
     int getFinance(){ return finance;}
+    std::string getName_of_company(){ return name_of_company;}
 
     virtual ~Company(){}
 };

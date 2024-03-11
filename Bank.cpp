@@ -62,3 +62,7 @@ void Bank::getInfo() {
 void Bank::showFunds() {
     std::cout << "Founds of company in bank: " << getFinance() << "\n";
 }
+
+void Bank::showName_of_company(){
+    std::cout << "Name of company in bank: " << getName_of_company() << "\n";
+}

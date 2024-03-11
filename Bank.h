@@ -45,6 +45,7 @@ public:
     }
 
     virtual void showFunds() override;
+    virtual void showName_of_company() override;
 
     ~Bank() {};
 };

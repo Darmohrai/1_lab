@@ -16,13 +16,16 @@ void gap();
 
 int main() {
     Company* february = new Bank;
+    february->setName_of_company();
     february->setFinance();
+    february->showName_of_company();
     february->showFunds();
-
+    std::cout<<"\n";
     Bank march_m;
     Company& march = march_m;
     march.setFinance();
     march.showFunds();
+    std::cout<<"\n";
 
     int number_emp;
     std::cout << "enter number of full time employee: ";
