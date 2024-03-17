@@ -25,7 +25,7 @@ public:
         return promotion;
     }
 
-    Employee& operator=(const Employee& other) {
+    Employee& operator=(const Employee& other) noexcept {
         if (this != &other) {
             Human::operator=(other);
             position = other.position;
@@ -33,11 +33,13 @@ public:
         return *this;
     }
 
-    virtual void getBriefInfo(){
-        std::cout << full_name << " " << position;
+    void getBriefInfo() override {
+        std::cout << getFull_Name() << " " << position;
     }
 
-    ~Employee(){};
+    [[nodiscard]] std::string getPosition() const {return position;}
+
+    ~Employee() override {};
 };
 
 #endif //PAYMENT_SYSTEM_OOP_EMPLOYEE_H

@@ -16,20 +16,20 @@ public:
 
     Human(std::string full_name, int age);
 
-    std::string getFull_Name() const {return full_name;}
-    int getAge() const {return age;}
+    [[nodiscard]] std::string getFull_Name() const {return full_name;}
+    [[nodiscard]] int getAge() const {return age;}
 
-    /*Human& operator=(const Human& other) {
+    Human& operator=(const Human& other) {
         if (this != &other) {
             full_name = other.full_name;
             age = other.age;
         }
         return *this;
-    }*/
+    }
 
     virtual void getBriefInfo() = 0;
 
-    virtual ~Human(){};
+    virtual ~Human() = default;
 };
 
 

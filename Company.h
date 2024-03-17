@@ -8,7 +8,7 @@
 #include <iostream>
 #include "Interface.h"
 
-class Company : Interface {
+class Company : public Interface {
 private:
     std::string name_of_company;
     int finance;
@@ -18,10 +18,10 @@ public:
 
     void setName_of_company();
     void setFinance();
-    int getFinance(){ return finance;}
+    [[nodiscard]] int getFinance() const { return finance;}
     std::string getName_of_company(){ return name_of_company;}
 
-    virtual ~Company(){}
+    virtual ~Company() = default;
 };
 
 

@@ -4,7 +4,7 @@
 
 #include "Human.h"
 
-Human::Human(std::string full_name, int age){
+Human::Human(std::string full_name, int age) : full_name{full_name}{
     this->full_name = full_name;
     this->age = age;
 

@@ -8,7 +8,7 @@
 #include "Employee.h"
 #include <iostream>
 
-class FullTimeEmployee : public Employee {
+class FullTimeEmployee final : public Employee {
 private:
     int salary;
     int annual_leave;
@@ -16,13 +16,13 @@ private:
 public:
     FullTimeEmployee() : salary(0), annual_leave(0), sick_leave(0){}
 
-    FullTimeEmployee(int salary, std::string full_name, int age, int sick_leave);
+    FullTimeEmployee(std::string full_name, int age, int sick_leave);
 
-    FullTimeEmployee(int i);
+    explicit FullTimeEmployee(int i);
 
     int operator + (const FullTimeEmployee& worker) const;
 
-    int getSalary() const {return salary;}
+    [[nodiscard]] int getSalary() const {return salary;}
 
     friend std::ostream& operator<<(std::ostream &os, FullTimeEmployee &worker);
 
@@ -36,7 +36,7 @@ public:
         return *this;
     }
 
-    int getSick_leave(){ return this->sick_leave;}
+    [[nodiscard]]int getSick_leave() const { return this->sick_leave;}
 
     FullTimeEmployee(const FullTimeEmployee& other) : Employee(other) {
         salary = other.salary;
@@ -44,18 +44,18 @@ public:
         sick_leave = other.sick_leave;
     }
 
-    FullTimeEmployee(FullTimeEmployee&& other) : Employee(other), salary{other.salary},
-    annual_leave{other.annual_leave}, sick_leave{other.sick_leave}{
+    FullTimeEmployee(FullTimeEmployee&& other) noexcept : Employee(other), salary{other.salary},
+    annual_leave{other.annual_leave}, sick_leave{other.sick_leave} {
         other.salary = 0;
         other.sick_leave = 0;
         other.annual_leave = 0;
     }
 
-    virtual void getBriefInfo(){
-        std::cout << full_name << " " << position << " salary - " << salary;
+    void getBriefInfo() final{
+        std::cout << getFull_Name() << " " << getPosition() << " salary - " << salary;
     }
 
-    ~FullTimeEmployee(){};
+    ~FullTimeEmployee() final = default;
 };
 
 

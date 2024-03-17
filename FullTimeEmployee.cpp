@@ -15,7 +15,7 @@ FullTimeEmployee::FullTimeEmployee(int i): Employee(i) {
     std::cin >> this->sick_leave;
 }
 
-FullTimeEmployee::FullTimeEmployee(int salary, std::string full_name, int age, int sick_leave) : Employee(full_name, age) {
+FullTimeEmployee::FullTimeEmployee(std::string full_name, int age, int sick_leave) : Employee(full_name, age) {
     promotion++;
 
     std::cout << "write new salary: ";
