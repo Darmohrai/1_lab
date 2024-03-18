@@ -7,13 +7,14 @@
 void MenuManager();
 
 void AddProfitInfo(Bank &profit, std::string &question);
+
 void SeeProfitInfo(Bank &profit);
+
 void AddCompanyInfo(Bank &profit);
 
 void AddPayoutInfo(Payout &payout, std::string &question);
-void SeePayoutInfo(Payout &payout, std::string &question);
 
-void GetBankAssets(Bank &profit);
+void SeePayoutInfo(Payout &payout, std::string &question);
 
 int Employee_salary(FullTimeEmployee *full_time_worker, int number_emp, int employees_salary);
 
@@ -78,15 +79,15 @@ void MenuManager() {
     for (int j = 0; j < 1;) {
         system("pause");
         std::cout << "What do you want to do?\n" <<
-                  "1. Add new employee\n" <<
-                  "2. See information about employee\n" <<
-                  "3. Add information about company profit\n" <<
-                  "4. See information about company profit\n" <<
-                  "5. Add information about payout\n" <<
-                  "6. See information about payout\n" <<
-                  "7. Set assets\n" <<
-                  "8. See assets\n" <<
-                  "7. Exit\n";
+                  "1. Add new employee\n" <<                                              // not
+                  "2. See information about employee\n" <<                                // not
+                  "3. Add information about company profit\n" <<                          // ready
+                  "4. See information about company profit\n" <<                          // ready
+                  "5. Add information about payout\n" <<                                  // ready
+                  "6. See information about payout\n" <<                                  // ready
+                  "7. Set assets\n" <<                                                    // ready (should been improve)
+                  "8. See assets\n" <<                                                    // ready (should been improve)
+                  "9. Exit\n";
         int i = 0;
         while (i < 1) {
             try {
@@ -95,11 +96,11 @@ void MenuManager() {
                     i = 1;
                     Bank profit;
                     profit.readInfoFromFile();
-                    if(action == 3){
+                    if (action == 3) {
                         AddCompanyInfo(profit);
                         AddProfitInfo(profit, question);
                     }
-                    if(action == 4){
+                    if (action == 4) {
                         SeeProfitInfo(profit);
                     }
                     profit.writeInfoInFile();
@@ -114,7 +115,18 @@ void MenuManager() {
                         SeePayoutInfo(payout, question);
                     }
                     payout.writeInfoInFile();
-                } else if (action == 7) {
+                } else if (action == 7 or action == 8) {
+                    i = 1;
+                    Bank profit;
+                    profit.readAssetsInfo();
+                    if (action == 7) {
+                        profit.setAssets();
+                    }
+                    if (action == 8) {
+                        profit.getAssets();
+                    }
+                    profit.writeAssetsInfo();
+                } else if (action == 9) {
                     i = 1;
                     j = 1;
                 } else {
@@ -183,30 +195,14 @@ void AddProfitInfo(Bank &profit, std::string &question) {
     }
 }
 
-void SeeProfitInfo(Bank &profit){
+void SeeProfitInfo(Bank &profit) {
     profit.getInfo();
+    std::cout << "\n" << "\n";
 }
 
 void AddCompanyInfo(Bank &profit) {
     profit.setName_of_company();
     profit.setFinance();
-}
-
-void GetBankAssets(Bank &profit) {
-    std::cout << std::endl;
-    for (int i = 0; i < 3; i++) {
-        if (i == 0) {
-            std::cout << "Bank assets in uah: ";
-        }
-        if (i == 1) {
-            std::cout << "Bank assets in usd: ";
-        }
-        if (i == 2) {
-            std::cout << "Bank assets in eur: ";
-        }
-
-        std::cout << " " << profit.getAssets(i) << std::endl;
-    }
 }
 
 int Employee_salary(FullTimeEmployee *full_time_worker, int number_emp, int employees_salary) {

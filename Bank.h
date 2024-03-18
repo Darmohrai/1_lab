@@ -17,7 +17,7 @@ private:
     int workdays;
     Payout expencess;
 
-    int *assets = nullptr;
+    int *assets;
 public:
     //Bank() : name_of_bank {"None"}, monthly_profit{0}, workdays{0}{}
 
@@ -31,8 +31,7 @@ public:
 
     void setAssets();
 
-    [[nodiscard]] int getAssets(int i) const;
-
+    void getAssets();
 
     void getInfo() override;
 
@@ -51,21 +50,11 @@ public:
 
     void showName_of_company() override;
 
-    void writeInfoInFile() {
-        std::ofstream fout("D:\\payment_system_oop\\savings_file\\Profit_info.txt");
-        fout << name_of_bank << "\n" << monthly_profit << "\n" << workdays << "\n" <<
-             getName_of_company() << "\n" << getFinance();
-        fout.close();
-    }
+    void writeInfoInFile();
+    void readInfoFromFile();
 
-    void readInfoFromFile() {
-        std::ifstream fin("D:\\payment_system_oop\\savings_file\\Profit_info.txt");
-        std::string name_of_company;
-        int finance;
-        fin >> name_of_bank >> monthly_profit >> workdays >> name_of_company >> finance;
-        readCompInfoFromFile(name_of_company, finance);
-        fin.close();
-    }
+    void writeAssetsInfo();
+    void readAssetsInfo();
 
     ~Bank() final = default;
 };
