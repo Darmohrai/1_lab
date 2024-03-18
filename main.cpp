@@ -1,5 +1,4 @@
 #include <iostream>
-#include <fstream>
 #include "Bank.h"
 #include "Payout.h"
 #include "FullTimeEmployee.h"
@@ -7,9 +6,12 @@
 
 void MenuManager();
 
-void AddPayoutInfo(Payout &payout, std::string &question);
+void AddProfitInfo(Bank &profit, std::string &question);
+void SeeProfitInfo(Bank &profit);
+void AddCompanyInfo(Bank &profit);
 
-void BankQuestoin(Bank &profit, std::string &question);
+void AddPayoutInfo(Payout &payout, std::string &question);
+void SeePayoutInfo(Payout &payout, std::string &question);
 
 void GetBankAssets(Bank &profit);
 
@@ -66,7 +68,6 @@ int main() {
     }
 
 
-
     return 0;
 }
 
@@ -74,44 +75,61 @@ int main() {
 void MenuManager() {
     int action;
     std::string question;
-    std::cout << "What do you want to do?\n" <<
-              "1. Add new employee\n" <<
-              "2. See information about employee\n" <<
-              "3. Add information about company profit\n" <<
-              "4. See information about company profit\n" <<
-              "5. Add information about payout\n" <<
-              "6. See information about payout\n";
-    int i = 0;
-    while (i < 1) {
-        try {
-            std::cin >> action;
-            if (action < 6 and action > 1) {
-                i = 1;
-            } else {
-                throw false;
+    for (int j = 0; j < 1;) {
+        system("pause");
+        std::cout << "What do you want to do?\n" <<
+                  "1. Add new employee\n" <<
+                  "2. See information about employee\n" <<
+                  "3. Add information about company profit\n" <<
+                  "4. See information about company profit\n" <<
+                  "5. Add information about payout\n" <<
+                  "6. See information about payout\n" <<
+                  "7. Set assets\n" <<
+                  "8. See assets\n" <<
+                  "7. Exit\n";
+        int i = 0;
+        while (i < 1) {
+            try {
+                std::cin >> action;
+                if (action == 3 or action == 4) {
+                    i = 1;
+                    Bank profit;
+                    profit.readInfoFromFile();
+                    if(action == 3){
+                        AddCompanyInfo(profit);
+                        AddProfitInfo(profit, question);
+                    }
+                    if(action == 4){
+                        SeeProfitInfo(profit);
+                    }
+                    profit.writeInfoInFile();
+                } else if (action == 5 or action == 6) {
+                    i = 1;
+                    Payout payout;
+                    payout.readInfoFromFile();
+                    if (action == 5) {
+                        AddPayoutInfo(payout, question);
+                    }
+                    if (action == 6) {
+                        SeePayoutInfo(payout, question);
+                    }
+                    payout.writeInfoInFile();
+                } else if (action == 7) {
+                    i = 1;
+                    j = 1;
+                } else {
+                    throw false;
+                }
+            }
+            catch (bool) {
+                std::cerr << "You write wrong number, try again\n";
             }
         }
-        catch (bool) {
-            std::cerr << "You write wrong number, try again\n";
-        }
     }
-/*
-    if (action == 5 or action == 6) {
-        Payout payout;
-        payout.readInfoFromFile();
-        if (action == 5) {
-            AddPayoutInfo(payout, question);
-        }
 
-
-
-        payout.writeInfoInFile();
-    }*/
-
-    action;
 }
 
-void AddPayoutInfo(Payout &payment, std::string &question) {
+void AddPayoutInfo(Payout &payout, std::string &question) {
     int unexpected_expenses;
     int premium = 0;
     std::string payment_day;
@@ -120,25 +138,30 @@ void AddPayoutInfo(Payout &payment, std::string &question) {
     std::cin >> question;
     if (question != "skip") {
         payment_day = question;
-        payment = Payout(payment_day);
+        payout = Payout(payment_day);
         std::cout << "Do you want enter premium? (write 'yes' or 'no')" << std::endl;
         std::cin >> question;
         if (question == "yes") {
             std::cout << "How much is allocated for the premium? ";
             std::cin >> premium;
-            payment = Payout(premium, payment_day);
+            payout = Payout(premium, payment_day);
             std::cout << "Do you want enter unexpected expenses? (write 'yes' or 'no')" << std::endl;
             std::cin >> question;
             if (question == "yes") {
                 std::cout << "How much is unexpected expenses? ";
                 std::cin >> unexpected_expenses;
-                payment = Payout(unexpected_expenses, premium, payment_day);
+                payout = Payout(unexpected_expenses, premium, payment_day);
             }
         }
     }
 }
 
-void BankQuestoin(Bank &profit, std::string &question) {
+void SeePayoutInfo(Payout &payout, std::string &question) {
+    payout.getInfo();
+    std::cout << "\n" << "\n";
+}
+
+void AddProfitInfo(Bank &profit, std::string &question) {
 
     int monthly_profit, workdays;
 
@@ -158,6 +181,15 @@ void BankQuestoin(Bank &profit, std::string &question) {
             }
         }
     }
+}
+
+void SeeProfitInfo(Bank &profit){
+    profit.getInfo();
+}
+
+void AddCompanyInfo(Bank &profit) {
+    profit.setName_of_company();
+    profit.setFinance();
 }
 
 void GetBankAssets(Bank &profit) {
@@ -218,5 +250,3 @@ Payout SetPayInfo(std::string &question) {
 }
 
 void gap() { std::cout << std::endl << std::endl << std::endl; } // потрібно замінити на очищення екрану
-
-//system("cls");

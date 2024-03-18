@@ -4,6 +4,7 @@
 
 #ifndef PAYMENT_SYSTEM_OOP_COMPANY_H
 #define PAYMENT_SYSTEM_OOP_COMPANY_H
+
 #include <string>
 #include <iostream>
 #include "Interface.h"
@@ -14,12 +15,18 @@ private:
     int finance;
 public:
     virtual void showFunds();
+
     virtual void showName_of_company();
 
     void setName_of_company();
+
     void setFinance();
-    [[nodiscard]] int getFinance() const { return finance;}
-    std::string getName_of_company(){ return name_of_company;}
+
+    [[nodiscard]] int getFinance() const { return finance; }
+
+    std::string getName_of_company() { return name_of_company; }
+
+    void readCompInfoFromFile(std::string &name_of_company, int &finance);
 
     virtual ~Company() = default;
 };

@@ -54,7 +54,7 @@ int Bank::getAssets(int i) const {
 
 void Bank::getInfo() {
     std::cout << std::endl << "In " <<
-              this->name_of_bank << " bank company has " <<
+              this->name_of_bank << " bank company " << getName_of_company() <<" has " <<
               this->monthly_profit << "usd in " <<
               this->workdays << " workdays" << std::endl;
 }
