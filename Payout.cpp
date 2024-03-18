@@ -35,3 +35,17 @@ Payout::Payout(const Payout& other) {
     unexpected_expenses = other.unexpected_expenses;
 }
 
+void Payout::writeInfoInFile(){
+    std::ofstream fout("D:\\payment_system_oop\\savings_file\\Payout_info.txt");
+    fout << payment_day << "\n" << premium << "\n" << unexpected_expenses;
+    fout.close();
+}
+
+void Payout::readInfoFromFile(){
+    std::ifstream fin("D:\\payment_system_oop\\savings_file\\Payout_info.txt");
+    std::getline(fin, payment_day);
+    fin >> premium;
+    fin >> unexpected_expenses;
+    fin.close();
+}
+

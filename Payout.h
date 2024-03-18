@@ -7,6 +7,7 @@
 
 #include <string>
 #include <iostream>
+#include <fstream>
 #include "Interface.h"
 
 class Payout : Interface{
@@ -38,7 +39,11 @@ public:
 
     Payout(const Payout& other);
 
-    ~Payout(){}
+    void writeInfoInFile();
+
+    void readInfoFromFile();
+
+    ~Payout() = default;
 };
 
 #endif //PAYMENT_SYSTEM_OOP_PAYOUT_H

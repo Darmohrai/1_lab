@@ -11,6 +11,4 @@ public:
 virtual void getInfo() = 0;
 virtual int const getMoney() = 0;
 };
-
-
 #endif //PAYMENT_SYSTEM_OOP_INTERFACE_H
