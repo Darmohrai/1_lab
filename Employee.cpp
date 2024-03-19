@@ -19,4 +19,11 @@ Employee::Employee(std::string full_name, int age) : Human(full_name, age) {
     std::cin >> this->position;
 }
 
+void Employee::writeEmployeeInfo() {
+    std::ofstream fout("D:\\payment_system_oop\\savings_file\\FullTimeEmployeeInfo.txt", std::ios::app);
+    writeHumanInfo();
+    fout << position << "\n";
+    fout.close();
+}
+
 int Employee::promotion;

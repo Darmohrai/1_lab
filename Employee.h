@@ -39,6 +39,8 @@ public:
 
     [[nodiscard]] std::string getPosition() const {return position;}
 
+    void writeEmployeeInfo();
+
     ~Employee() override {};
 };
 

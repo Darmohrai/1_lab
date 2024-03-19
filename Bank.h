@@ -19,8 +19,6 @@ private:
 
     int *assets;
 public:
-    //Bank() : name_of_bank {"None"}, monthly_profit{0}, workdays{0}{}
-
     explicit Bank(std::string name_of_bank = "None", int monthly_profit = 0, int workdays = 0);
 
     Bank(const Bank &profit);
@@ -30,7 +28,6 @@ public:
     [[nodiscard]] int getMonthly_Profit() const { return monthly_profit; }
 
     void setAssets();
-
     void getAssets();
 
     void getInfo() override;

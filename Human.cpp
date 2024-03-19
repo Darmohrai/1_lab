@@ -9,3 +9,9 @@ Human::Human(std::string full_name, int age) : full_name{full_name}{
     this->age = age;
 
 }
+
+void Human::writeHumanInfo() {
+    std::ofstream fout("D:\\payment_system_oop\\savings_file\\FullTimeEmployeeInfo.txt", std::ios::app);
+    fout << full_name << "\n";
+    fout.close();
+}

@@ -6,13 +6,15 @@
 #define PAYMENT_SYSTEM_OOP_HUMAN_H
 
 #include <iostream>
+#include <fstream>
+#include <iterator>
 
 class Human{
 protected:
     std::string full_name;
     int age;
 public:
-    Human(): full_name{"None"}, age{0}{};
+    Human(): full_name("None"), age(0){};
 
     Human(std::string full_name, int age);
 
@@ -28,6 +30,8 @@ public:
     }
 
     virtual void getBriefInfo() = 0;
+
+    void writeHumanInfo();
 
     virtual ~Human() = default;
 };

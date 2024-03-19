@@ -6,7 +6,6 @@
 #define PAYMENT_SYSTEM_OOP_FULLTIMEEMPLOYEE_H
 
 #include "Employee.h"
-#include <iostream>
 
 class FullTimeEmployee final : public Employee {
 private:
@@ -53,6 +52,13 @@ public:
 
     void getBriefInfo() final{
         std::cout << getFull_Name() << " " << getPosition() << " salary - " << salary;
+    }
+
+    void writeFullTimeEmployeeInfo();
+
+    void changeInfo(){
+        std::fstream file("D:\\payment_system_oop\\savings_file\\FullTimeEmployeeInfo.txt");
+
     }
 
     ~FullTimeEmployee() final = default;

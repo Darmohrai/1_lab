@@ -1,10 +1,14 @@
 #include <iostream>
+#include <vector>
+#include <memory>
 #include "Bank.h"
 #include "Payout.h"
 #include "FullTimeEmployee.h"
 #include "PartTimeEmployee.h"
 
 void MenuManager();
+
+
 
 void AddProfitInfo(Bank &profit, std::string &question);
 
@@ -14,11 +18,9 @@ void AddCompanyInfo(Bank &profit);
 
 void AddPayoutInfo(Payout &payout, std::string &question);
 
-void SeePayoutInfo(Payout &payout, std::string &question);
+void SeePayoutInfo(Payout &payout);
 
 int Employee_salary(FullTimeEmployee *full_time_worker, int number_emp, int employees_salary);
-
-Payout SetPayInfo(std::string &question);
 
 void gap();
 
@@ -92,7 +94,26 @@ void MenuManager() {
         while (i < 1) {
             try {
                 std::cin >> action;
-                if (action == 3 or action == 4) {
+                if (action == 1 or action == 2) {
+                    i = 1;
+                    std::vector<std::unique_ptr<FullTimeEmployee>> full_time_employee;
+                    std::vector<std::unique_ptr<PartTimeEmployee>> part_time_employee;
+
+                    if (action == 1) {
+                        std::cout << "Which type of employee?\n" <<
+                                  "1. Full-time employee" <<
+                                  "2. Part-time employee" <<
+                                  "3. Both";
+                        std::cin >> action;
+                    }
+                    if (action == 2) {
+                        std::cout << "Which type of employee?\n" <<
+                                  "1. Full-time employee" <<
+                                  "2. Part-time employee" <<
+                                  "3. Both";
+                        std::cin >> action;
+                    }
+                } else if (action == 3 or action == 4) {
                     i = 1;
                     Bank profit;
                     profit.readInfoFromFile();
@@ -112,7 +133,7 @@ void MenuManager() {
                         AddPayoutInfo(payout, question);
                     }
                     if (action == 6) {
-                        SeePayoutInfo(payout, question);
+                        SeePayoutInfo(payout);
                     }
                     payout.writeInfoInFile();
                 } else if (action == 7 or action == 8) {
@@ -141,6 +162,8 @@ void MenuManager() {
 
 }
 
+
+
 void AddPayoutInfo(Payout &payout, std::string &question) {
     int unexpected_expenses;
     int premium = 0;
@@ -168,7 +191,7 @@ void AddPayoutInfo(Payout &payout, std::string &question) {
     }
 }
 
-void SeePayoutInfo(Payout &payout, std::string &question) {
+void SeePayoutInfo(Payout &payout) {
     payout.getInfo();
     std::cout << "\n" << "\n";
 }
@@ -214,35 +237,6 @@ int Employee_salary(FullTimeEmployee *full_time_worker, int number_emp, int empl
         }
     }
     return employees_salary;
-}
-
-Payout SetPayInfo(std::string &question) {
-    int unexpected_expenses;
-    int premium = 0;
-    std::string payment_day;
-    Payout payment;
-
-    std::cout << "On what day is the salary payment scheduled? (write 'skip' to skip)" << std::endl;
-    std::cin >> question;
-    if (question != "skip") {
-        payment_day = question;
-        payment = Payout(payment_day);
-        std::cout << "Do you want enter premium? (write 'yes' or 'no')" << std::endl;
-        std::cin >> question;
-        if (question == "yes") {
-            std::cout << "How much is allocated for the premium? ";
-            std::cin >> premium;
-            payment = Payout(premium, payment_day);
-            std::cout << "Do you want enter unexpected expenses? (write 'yes' or 'no')" << std::endl;
-            std::cin >> question;
-            if (question == "yes") {
-                std::cout << "How much is unexpected expenses? ";
-                std::cin >> unexpected_expenses;
-                payment = Payout(unexpected_expenses, premium, payment_day);
-            }
-        }
-    }
-    return payment;
 }
 
 void gap() { std::cout << std::endl << std::endl << std::endl; } // потрібно замінити на очищення екрану
