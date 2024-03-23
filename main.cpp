@@ -1,5 +1,7 @@
 #include <iostream>
 #include <vector>
+#include <fstream>
+#include <filesystem>
 #include <memory>
 #include "Bank.h"
 #include "Payout.h"
@@ -8,7 +10,8 @@
 
 void MenuManager();
 
-
+void AddFullEmployeeInfo();
+void SeeEmployeeInfo(FullTimeEmployee &full_time_employee, PartTimeEmployee &part_time_employee);
 
 void AddProfitInfo(Bank &profit, std::string &question);
 
@@ -87,31 +90,33 @@ void MenuManager() {
                   "4. See information about company profit\n" <<                          // ready
                   "5. Add information about payout\n" <<                                  // ready
                   "6. See information about payout\n" <<                                  // ready
-                  "7. Set assets\n" <<                                                    // ready (should been improve)
-                  "8. See assets\n" <<                                                    // ready (should been improve)
+                  "7. Set assets\n" <<                                                    // ready (should be improved)
+                  "8. See assets\n" <<                                                    // ready (should be improved)
                   "9. Exit\n";
         int i = 0;
         while (i < 1) {
             try {
                 std::cin >> action;
                 if (action == 1 or action == 2) {
+                    int emp_act, none = 0;
+                    if(!std::filesystem::exists("D:\\payment_system_oop\\savings_file\\Full_time_employee_info")){
+                        std::ofstream fileStream("D:\\payment_system_oop\\savings_file\\Full_time_employee_info");
+                        fileStream.write(reinterpret_cast<const char*>(&none), sizeof (int));
+                        fileStream.close();
+                    }
                     i = 1;
-                    std::vector<std::unique_ptr<FullTimeEmployee>> full_time_employee;
-                    std::vector<std::unique_ptr<PartTimeEmployee>> part_time_employee;
-
                     if (action == 1) {
                         std::cout << "Which type of employee?\n" <<
                                   "1. Full-time employee" <<
                                   "2. Part-time employee" <<
                                   "3. Both";
-                        std::cin >> action;
+                        std::cin >> emp_act;
+                        if(emp_act == 1){
+                            AddFullEmployeeInfo();
+                        }
                     }
                     if (action == 2) {
-                        std::cout << "Which type of employee?\n" <<
-                                  "1. Full-time employee" <<
-                                  "2. Part-time employee" <<
-                                  "3. Both";
-                        std::cin >> action;
+
                     }
                 } else if (action == 3 or action == 4) {
                     i = 1;
@@ -162,7 +167,63 @@ void MenuManager() {
 
 }
 
+void AddFullEmployeeInfo(){
+    int emp_numb, numb;
+    std::cout<< "How many new employee do you want to add? ";
 
+    std::cin >> emp_numb;
+
+    if (emp_numb > 0){
+    std::vector<std::unique_ptr<FullTimeEmployee>> full_time_employee;
+    for(int i = 0; i < emp_numb; i++){
+        full_time_employee.push_back(std::make_unique<FullTimeEmployee>(i));
+    }
+
+    std::ifstream fin("D:\\payment_system_oop\\savings_file\\Full_time_employee_info");
+    fin.read(reinterpret_cast<char*>(&numb), sizeof (int));
+    fin.close();
+    emp_numb += numb;
+
+    std::ofstream fileStream("D:\\payment_system_oop\\savings_file\\Full_time_employee_info");
+    fileStream.seekp(std::ios::beg);
+    fileStream.write(reinterpret_cast<const char*>(&emp_numb), sizeof (int));
+    fileStream.seekp(std::ios::end);
+    fileStream.write(reinterpret_cast<const char*>(full_time_employee.data()), sizeof(std::unique_ptr<FullTimeEmployee>));
+    fileStream.close();
+    }
+
+}
+
+void SeeFullEmployeeInfo(){
+    int numb_emp;
+
+    std::vector<std::unique_ptr<FullTimeEmployee>> full_time_employee(3);
+
+    std::ifstream str("D:\\payment_system_oop\\savings_file\\Full_time_employee_info");
+    str.read(reinterpret_cast<char*>(full_time_employee.data()), sizeof(std::unique_ptr<FullTimeEmployee>) * full_time_employee.size());
+    str.close();
+
+    for (int i = 0; i < numb_emp; i++){
+        std::cout << *full_time_employee[i];
+    }
+}
+
+void SeeEmployeeInfo(FullTimeEmployee &full_time_employee, PartTimeEmployee &part_time_employee){
+    int action;
+    std::cout << "Which type of employee?\n" <<
+              "1. Full-time employee" <<
+              "2. Part-time employee" <<
+              "3. Both";
+    std::cin >> action;
+    try{
+        if (action == 1){
+
+        }
+    }
+    catch(bool){
+
+    }
+}
 
 void AddPayoutInfo(Payout &payout, std::string &question) {
     int unexpected_expenses;
