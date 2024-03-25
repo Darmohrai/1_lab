@@ -13,7 +13,7 @@ private:
     int annual_leave;
     int sick_leave;
 public:
-    FullTimeEmployee() : salary(0), annual_leave(0), sick_leave(0){}
+    FullTimeEmployee() : salary(0), annual_leave(0), sick_leave(0), Employee(){}
 
     FullTimeEmployee(std::string full_name, int age, int sick_leave);
 
@@ -36,6 +36,7 @@ public:
     }
 
     [[nodiscard]]int getSick_leave() const { return this->sick_leave;}
+    [[nodiscard]]int getAnnual_leave() const { return this->annual_leave;}
 
     FullTimeEmployee(const FullTimeEmployee& other) : Employee(other) {
         salary = other.salary;
@@ -55,10 +56,20 @@ public:
     }
 
     void writeFullTimeEmployeeInfo();
+    void readFullTimeEmployeeInfo();
 
     void changeInfo(){
         std::fstream file("D:\\payment_system_oop\\savings_file\\FullTimeEmployeeInfo.txt");
 
+    }
+
+    void setInfo(std::string full_name, std::string position, int age, int salary, int annual_leave, int sick_leave){
+        this->full_name = full_name;
+        this->age=age;
+        this->position = position;
+        this->salary=salary;
+        this->annual_leave=annual_leave;
+        this->sick_leave=sick_leave;
     }
 
     ~FullTimeEmployee() final = default;

@@ -41,8 +41,8 @@ std::ostream &operator<<(std::ostream &os, FullTimeEmployee &worker) {
 }
 
 void FullTimeEmployee::writeFullTimeEmployeeInfo() {
-    std::ofstream fout("D:\\payment_system_oop\\savings_file\\FullTimeEmployeeInfo.txt", std::ios::app);
     writeEmployeeInfo();
+    std::ofstream fout("D:\\payment_system_oop\\savings_file\\Full_time_employee_info.txt", std::ios::app);
     fout << salary << "\n" << annual_leave << "\n" << sick_leave << "\n" << "\n";
     fout.close();
 }

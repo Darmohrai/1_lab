@@ -15,7 +15,7 @@ protected:
 
     static int promotion;
 public:
-    Employee() : position("No_Info"){};
+    Employee() : position("No_Info"), Human(){};
 
     Employee(int i);
 

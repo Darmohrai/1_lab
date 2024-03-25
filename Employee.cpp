@@ -20,8 +20,8 @@ Employee::Employee(std::string full_name, int age) : Human(full_name, age) {
 }
 
 void Employee::writeEmployeeInfo() {
-    std::ofstream fout("D:\\payment_system_oop\\savings_file\\FullTimeEmployeeInfo.txt", std::ios::app);
     writeHumanInfo();
+    std::ofstream fout("D:\\payment_system_oop\\savings_file\\Full_time_employee_info.txt", std::ios::app);
     fout << position << "\n";
     fout.close();
 }

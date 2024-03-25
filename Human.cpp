@@ -11,7 +11,7 @@ Human::Human(std::string full_name, int age) : full_name{full_name}{
 }
 
 void Human::writeHumanInfo() {
-    std::ofstream fout("D:\\payment_system_oop\\savings_file\\FullTimeEmployeeInfo.txt", std::ios::app);
-    fout << full_name << "\n";
+    std::ofstream fout("D:\\payment_system_oop\\savings_file\\Full_time_employee_info.txt", std::ios::app);
+    fout << "\n\n" << full_name << "\n";
     fout.close();
 }
