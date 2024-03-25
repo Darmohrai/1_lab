@@ -40,6 +40,7 @@ public:
     [[nodiscard]] std::string getPosition() const {return position;}
 
     void writeEmployeeInfo();
+    void readEmployeeInfo(int pos);
 
     ~Employee() override {};
 };

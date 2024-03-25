@@ -46,3 +46,15 @@ void FullTimeEmployee::writeFullTimeEmployeeInfo() {
     fout << salary << "\n" << annual_leave << "\n" << sick_leave << "\n" << "\n";
     fout.close();
 }
+
+void FullTimeEmployee::readFullTimeEmployeeInfo(int pos) {
+    readEmployeeInfo(pos);
+    std::ifstream fin("D:\\payment_system_oop\\savings_file\\Full_time_employee_info.txt");
+    //fin.seekg(pos+4);
+    std::string  l;
+    for (int i = 0; i < pos + 4; i++){
+        fin >> l;
+    }
+    fin >> salary >> annual_leave >> sick_leave ;
+    fin.close();
+}

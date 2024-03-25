@@ -32,6 +32,13 @@ public:
     virtual void getBriefInfo() = 0;
 
     void writeHumanInfo();
+    void readHumanInfo(int pos);
+
+    void setInfo(std::string full_name, int age){
+        this->full_name = full_name;
+        this->age = age;
+        std::cout << this->full_name;
+    }
 
     virtual ~Human() = default;
 };

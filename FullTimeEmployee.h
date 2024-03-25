@@ -56,7 +56,7 @@ public:
     }
 
     void writeFullTimeEmployeeInfo();
-    void readFullTimeEmployeeInfo();
+    void readFullTimeEmployeeInfo(int pos);
 
     void changeInfo(){
         std::fstream file("D:\\payment_system_oop\\savings_file\\FullTimeEmployeeInfo.txt");

@@ -28,25 +28,26 @@ int Employee_salary(FullTimeEmployee *full_time_worker, int number_emp, int empl
 
 void gap();
 
-int main() {
+int main() {/*
+std::string l;
+    std::ifstream fin("D:\\payment_system_oop\\savings_file\\Full_time_employee_info.txt");
+    fin.seekg(3);
+
+    fin >> l >>l >> l;
+    std::cout << l;*/
 /*
-    int numb;
-    std::ifstream fin("D:\\payment_system_oop\\savings_file\\Full_time_employee_info", std::ios::binary);
-    fin.read(reinterpret_cast<char *>(&numb), sizeof(int));
-    std::vector<FullTimeEmployee> full_time_employee(numb);
-    fin.read(reinterpret_cast<char *>(full_time_employee.data()),
-             sizeof(FullTimeEmployee) * full_time_employee.size());
+    FullTimeEmployee p;
+    p.readFullTimeEmployeeInfo(0);
+    std::cout << p;*/
+
+/*
+std::string full_name;
+int age;
+    std::ifstream fin("D:\\payment_system_oop\\savings_file\\Full_time_employee_info.txt");
+    fin.seekg(0+1);
+    fin >> full_name >> age;
     fin.close();
-    std::cout << numb << "\n";
-*/
-
-
-
-
-
-
-
-
+    std :: cout << full_name << age;*/
 
 
 
@@ -124,7 +125,7 @@ void MenuManager() {
                     int emp_act, none = 0;
                     if (!std::filesystem::exists("D:\\payment_system_oop\\savings_file\\Full_time_employee_info.txt")) {
                         std::ofstream fileStream("D:\\payment_system_oop\\savings_file\\Full_time_employee_info.txt");
-                        fileStream << "0" << "                       \n";
+                        fileStream << "0\n";
                         fileStream.close();
                     }
                     i = 1;
@@ -210,7 +211,7 @@ void AddFullEmployeeInfo() {
         full_numb = emp_numb + numb;
         fin.close();
 
-        std::fstream fout("D:\\payment_system_oop\\savings_file\\Full_time_employee_info.txt",  std::ios::out);
+        std::fstream fout("D:\\payment_system_oop\\savings_file\\Full_time_employee_info.txt",  std::ios::in | std::ios::out);
         fout.seekp(0);
         fout << full_numb;
         fout.close();
@@ -226,17 +227,18 @@ void AddFullEmployeeInfo() {
 }
 
 void SeeFullEmployeeInfo() {
-    int numb;
+    int numb, pos = 0;
 
     std::fstream fin("D:\\payment_system_oop\\savings_file\\Full_time_employee_info.txt",  std::ios::in);
     fin >> numb;
-    fin.close();
 
-    std::vector<FullTimeEmployee> full_time_employee;
+    std::vector<FullTimeEmployee> full_time_employee(numb);
     for (int i = 0; i < numb; i++) {
-
+        full_time_employee[i].readFullTimeEmployeeInfo(pos);
         std::cout << full_time_employee[i];
+        pos = pos + 6;
     }
+    fin.close();
 }
 
 void AddPayoutInfo(Payout &payout, std::string &question) {
