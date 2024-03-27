@@ -14,6 +14,8 @@ void AddFullEmployeeInfo();
 
 void SeeFullEmployeeInfo();
 
+void ChangeFullEmployeeInfo();
+
 void AddProfitInfo(Bank &profit, std::string &question);
 
 void SeeProfitInfo(Bank &profit);
@@ -28,30 +30,7 @@ int Employee_salary(FullTimeEmployee *full_time_worker, int number_emp, int empl
 
 void gap();
 
-int main() {/*
-std::string l;
-    std::ifstream fin("D:\\payment_system_oop\\savings_file\\Full_time_employee_info.txt");
-    fin.seekg(3);
-
-    fin >> l >>l >> l;
-    std::cout << l;*/
-/*
-    FullTimeEmployee p;
-    p.readFullTimeEmployeeInfo(0);
-    std::cout << p;*/
-
-/*
-std::string full_name;
-int age;
-    std::ifstream fin("D:\\payment_system_oop\\savings_file\\Full_time_employee_info.txt");
-    fin.seekg(0+1);
-    fin >> full_name >> age;
-    fin.close();
-    std :: cout << full_name << age;*/
-
-
-
-
+int main() {
     std::string answer;
     bool user_name = false;
 
@@ -108,7 +87,7 @@ void MenuManager() {
     for (int j = 0; j < 1;) {
         system("pause");
         std::cout << "What do you want to do?\n" <<
-                  "1. Add new employee\n" <<                                              // not
+                  "1. Add new or change info employee\n" <<                               // not
                   "2. See information about employee\n" <<                                // not
                   "3. Add information about company profit\n" <<                          // ready
                   "4. See information about company profit\n" <<                          // ready
@@ -132,10 +111,15 @@ void MenuManager() {
                     if (action == 1) {
                         std::cout << "Which type of employee?\n" <<
                                   "1. Full-time employee\n" <<
-                                  "2. Part-time employee\n";
+                                  "2. Part-time employee\n" <<
+                                  "3. Change info about full-time employee\n" <<
+                                  "4. Change info about part-time employee\n";
                         std::cin >> emp_act;
                         if (emp_act == 1) {
                             AddFullEmployeeInfo();
+                        }
+                        if (emp_act == 3) {
+                            ChangeFullEmployeeInfo();
                         }
                     }
                     if (action == 2) {
@@ -211,7 +195,8 @@ void AddFullEmployeeInfo() {
         full_numb = emp_numb + numb;
         fin.close();
 
-        std::fstream fout("D:\\payment_system_oop\\savings_file\\Full_time_employee_info.txt",  std::ios::in | std::ios::out);
+        std::fstream fout("D:\\payment_system_oop\\savings_file\\Full_time_employee_info.txt",
+                          std::ios::in | std::ios::out);
         fout.seekp(0);
         fout << full_numb;
         fout.close();
@@ -229,16 +214,64 @@ void AddFullEmployeeInfo() {
 void SeeFullEmployeeInfo() {
     int numb, pos = 0;
 
-    std::fstream fin("D:\\payment_system_oop\\savings_file\\Full_time_employee_info.txt",  std::ios::in);
+    std::fstream fin("D:\\payment_system_oop\\savings_file\\Full_time_employee_info.txt", std::ios::in);
     fin >> numb;
 
-    std::vector<FullTimeEmployee> full_time_employee(numb);
+    std::vector<std::shared_ptr<FullTimeEmployee>> full_time_employee;
     for (int i = 0; i < numb; i++) {
-        full_time_employee[i].readFullTimeEmployeeInfo(pos);
-        std::cout << full_time_employee[i];
+        full_time_employee.push_back(std::make_shared<FullTimeEmployee>());
+    }
+    for (int i = 0; i < numb; i++) {
+        full_time_employee[i]->readFullTimeEmployeeInfo(pos);
+        std::cout << *full_time_employee[i];
         pos = pos + 6;
     }
     fin.close();
+}
+
+void ChangeFullEmployeeInfo() {
+
+    int numb, pos = 0;
+
+    std::fstream fin("D:\\payment_system_oop\\savings_file\\Full_time_employee_info.txt", std::ios::in);
+    fin >> numb;
+    std::vector<std::shared_ptr<FullTimeEmployee>> full_time_employee;
+    for (int i = 0; i < numb; i++) {
+        full_time_employee.push_back(std::make_shared<FullTimeEmployee>());
+    }
+    for (int i = 0; i < numb; i++) {
+        full_time_employee[i]->readFullTimeEmployeeInfo(pos);
+        pos = pos + 6;
+    }
+    fin.close();
+
+    std::string question = "yes";
+    while (question == "yes") {
+        std::cout << "Did anyone get a promotion? (put 'yes' or 'no')" << std::endl;
+        std::cin >> question;
+        if (question == "no") {
+            break;
+        }
+        std::string full_name;
+        std::cout << "put his Full Name: ";
+        std::cin >> full_name;
+
+        for (int i = 0; i < numb; i++) {
+            if (full_time_employee[i]->getFull_Name() == full_name) {
+
+                *full_time_employee[i] = FullTimeEmployee(full_name, full_time_employee[i]->getAge(),
+                                                          full_time_employee[i]->getSick_leave());
+
+                break;
+            }
+        }
+    }
+
+    std::ofstream fout("D:\\payment_system_oop\\savings_file\\Full_time_employee_info.txt");
+    fout << numb << "\n\n";
+    for (int i = 0; i < numb; i++) {
+        full_time_employee[i]->writeFullTimeEmployeeInfo();
+    }
 }
 
 void AddPayoutInfo(Payout &payout, std::string &question) {
@@ -316,4 +349,7 @@ int Employee_salary(FullTimeEmployee *full_time_worker, int number_emp, int empl
     return employees_salary;
 }
 
-void gap() { std::cout << std::endl << std::endl << std::endl; } // потрібно замінити на очищення екрану
+void gap() {
+    std::cout << "--------------------------------------" << std::endl << std::endl
+              << "--------------------------------------" << std::endl;
+} // потрібно замінити на очищення екрану

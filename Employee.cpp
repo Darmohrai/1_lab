@@ -19,8 +19,8 @@ Employee::Employee(std::string full_name, int age) : Human(full_name, age) {
     std::cin >> this->position;
 }
 
-void Employee::writeEmployeeInfo() {
-    writeHumanInfo();
+void Employee::writeEmployeeInfo(int size_of_object) {
+    writeHumanInfo(size_of_object);
     std::ofstream fout("D:\\payment_system_oop\\savings_file\\Full_time_employee_info.txt", std::ios::app);
     fout << position << "\n";
     fout.close();
@@ -31,7 +31,7 @@ void Employee::readEmployeeInfo(int pos) {
     std::ifstream fin("D:\\payment_system_oop\\savings_file\\Full_time_employee_info.txt");
     //fin.seekg(pos+3);
     std::string  l;
-    for (int i = 0; i < pos + 3; i++){
+    for (int i = 0; i < pos + 4; i++){
         fin >> l;
     }
     fin >> position;

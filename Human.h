@@ -31,7 +31,7 @@ public:
 
     virtual void getBriefInfo() = 0;
 
-    void writeHumanInfo();
+    void writeHumanInfo(int size_of_object);
     void readHumanInfo(int pos);
 
     void setInfo(std::string full_name, int age){

@@ -39,7 +39,7 @@ public:
 
     [[nodiscard]] std::string getPosition() const {return position;}
 
-    void writeEmployeeInfo();
+    void writeEmployeeInfo(int size_of_object);
     void readEmployeeInfo(int pos);
 
     ~Employee() override {};
