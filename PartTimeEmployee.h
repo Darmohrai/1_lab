@@ -17,6 +17,8 @@ public:
 
     PartTimeEmployee(int i);
 
+    PartTimeEmployee(std::string full_name, int age);
+
     int getIncome() const { return hourly_rate * hours_of_work; }
 
     int operator + (const PartTimeEmployee& worker) const;

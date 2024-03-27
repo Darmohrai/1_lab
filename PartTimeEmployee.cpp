@@ -4,7 +4,7 @@
 
 #include "PartTimeEmployee.h"
 
-PartTimeEmployee::PartTimeEmployee(int i) : Employee(i){
+PartTimeEmployee::PartTimeEmployee(int i) : Employee(i) {
     std::cout << "Enter hourly rate: ";
     std::cin >> this->hourly_rate;
 
@@ -12,14 +12,22 @@ PartTimeEmployee::PartTimeEmployee(int i) : Employee(i){
     std::cin >> this->hours_of_work;
 }
 
-int PartTimeEmployee::operator+(const PartTimeEmployee &worker) const {
-    return int{ this->getIncome() + worker.getIncome()};
+PartTimeEmployee::PartTimeEmployee(std::string full_name, int age) : Employee(full_name, age) {
+    std::cout << "Write new hourly rate: ";
+    std::cin >> hourly_rate;
+
+    std::cout << "Write new hours of work: ";
+    std::cin >> hours_of_work;
 }
 
-std::ostream& operator<<(std::ostream &os, PartTimeEmployee &worker){
+int PartTimeEmployee::operator+(const PartTimeEmployee &worker) const {
+    return int{this->getIncome() + worker.getIncome()};
+}
+
+std::ostream &operator<<(std::ostream &os, PartTimeEmployee &worker) {
     os << std::endl << "full name: " << worker.full_name << std::endl
        << "position: " << worker.position << std::endl
-       << "age: " << worker.age << std::endl<< "salary: " << worker.hours_of_work << std::endl
+       << "age: " << worker.age << std::endl << "salary: " << worker.hours_of_work << std::endl
        << "annual leave: " << worker.hourly_rate << std::endl;
     return os;
 }
@@ -42,6 +50,6 @@ void PartTimeEmployee::readPartTimeEmployeeInfo(int pos) {
     for (int i = 0; i < pos + 4; i++) {
         fin >> l;
     }
-    fin >> hourly_rate >> hours_of_work ;
+    fin >> hourly_rate >> hours_of_work;
     fin.close();
 }
