@@ -32,7 +32,7 @@ public:
     virtual void getBriefInfo() = 0;
 
     void writeHumanInfo(int size_of_object, std::string file_name);
-    void readHumanInfo(int pos);
+    void readHumanInfo(int pos, std::string file_name);
 
     void setInfo(std::string full_name, int age){
         this->full_name = full_name;

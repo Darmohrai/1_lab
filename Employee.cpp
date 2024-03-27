@@ -26,9 +26,9 @@ void Employee::writeEmployeeInfo(int size_of_object, std::string file_name) {
     fout.close();
 }
 
-void Employee::readEmployeeInfo(int pos) {
-    readHumanInfo(pos);
-    std::ifstream fin("D:\\payment_system_oop\\savings_file\\Full_time_employee_info.txt");
+void Employee::readEmployeeInfo(int pos, std::string file_name) {
+    readHumanInfo(pos, file_name);
+    std::ifstream fin(file_name);
     //fin.seekg(pos+3);
     std::string  l;
     for (int i = 0; i < pos + 3; i++){

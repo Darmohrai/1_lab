@@ -16,14 +16,14 @@ void Human::writeHumanInfo(int size_of_object, std::string file_name) {
     fout.close();
 }
 
-void Human::readHumanInfo(int pos) {/*
+void Human::readHumanInfo(int pos, std::string file_name) {/*
     std::ifstream fin("D:\\payment_system_oop\\savings_file\\Full_time_employee_info.txt");
     fin.seekg(pos+1);
     fin >> full_name >> age;
     fin.close();*/
 
 
-    std::ifstream fin("D:\\payment_system_oop\\savings_file\\Full_time_employee_info.txt");
+    std::ifstream fin(file_name);
     std::string l;
     //fin.seekg(pos+1);
     for (int i = 0; i < pos + 1; i++){

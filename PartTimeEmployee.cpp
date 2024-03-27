@@ -32,3 +32,16 @@ void PartTimeEmployee::writePartTimeEmployeeInfo() {
     fout << hourly_rate << "\n" << hours_of_work << "\n";
     fout.close();
 }
+
+void PartTimeEmployee::readPartTimeEmployeeInfo(int pos) {
+    std::string file_name = "D:\\payment_system_oop\\savings_file\\Part_time_employee_info.txt";
+    readEmployeeInfo(pos, file_name);
+    std::ifstream fin(file_name);
+    //fin.seekg(pos+4);
+    std::string l;
+    for (int i = 0; i < pos + 4; i++) {
+        fin >> l;
+    }
+    fin >> hourly_rate >> hours_of_work ;
+    fin.close();
+}

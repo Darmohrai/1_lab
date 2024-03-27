@@ -33,6 +33,7 @@ public:
     }
 
     void writePartTimeEmployeeInfo();
+    void readPartTimeEmployeeInfo(int pos);
 
     ~PartTimeEmployee(){};
 };

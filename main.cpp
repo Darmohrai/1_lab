@@ -15,6 +15,7 @@ void SeeFullEmployeeInfo();
 void ChangeFullEmployeeInfo();
 
 void AddPartEmployeeInfo();
+void SeePartEmployeeInfo();
 
 void AddProfitInfo(Bank &profit, std::string &question);
 
@@ -138,6 +139,9 @@ void MenuManager() {
                         if (emp_act == 1) {
                             SeeFullEmployeeInfo();
                         }
+                        if (emp_act == 2) {
+                            SeePartEmployeeInfo();
+                        }
                     }
                 } else if (action == 3 or action == 4) {
                     i = 1;
@@ -195,7 +199,7 @@ void AddFullEmployeeInfo() {
     std::cin >> emp_numb;
 
     if (emp_numb > 0) {
-        std::vector<FullTimeEmployee> full_time_employee;
+        std::vector<std::shared_ptr<FullTimeEmployee>> full_time_employee;
 
 
         std::ifstream fin("D:\\payment_system_oop\\savings_file\\Full_time_employee_info.txt");
@@ -210,13 +214,10 @@ void AddFullEmployeeInfo() {
         fout.close();
 
         for (int i = 0; i < emp_numb; i++) {
-            full_time_employee.push_back(FullTimeEmployee(i));
-            full_time_employee[i].writeFullTimeEmployeeInfo();
+            full_time_employee.push_back(std::make_shared<FullTimeEmployee>(i));
+            full_time_employee[i]->writeFullTimeEmployeeInfo();
         }
-
-
     }
-
 }
 void SeeFullEmployeeInfo() {
     int numb, pos = 0;
@@ -266,18 +267,19 @@ void ChangeFullEmployeeInfo() {
 
         for (int i = 0; i < numb; i++) {
             if (full_time_employee[i]->getFull_Name() == full_name) {
-
-
                 full_time_employee.push_back(std::make_shared<FullTimeEmployee>(full_name, full_time_employee[i]->getAge(),
                                                    full_time_employee[i]->getSick_leave(), pos));
-
                 break;
             }
         }
     }
 
-    std::ofstream fout("D:\\payment_system_oop\\savings_file\\Full_time_employee_info.txt");
-    fout << numb << "\n\n";
+    std::fstream fout("D:\\payment_system_oop\\savings_file\\Full_time_employee_info.txt",
+                      std::ios::in | std::ios::out);
+    fout.seekp(0);
+    fout << numb;
+    fout.close();
+
     for (int i = 0; i < numb; i++) {
         full_time_employee[i]->writeFullTimeEmployeeInfo();
     }
@@ -292,8 +294,7 @@ void AddPartEmployeeInfo() {
     std::cin >> emp_numb;
 
     if (emp_numb > 0) {
-        std::vector<PartTimeEmployee> part_time_employee;
-
+        std::vector<std::shared_ptr<PartTimeEmployee>> part_time_employee;
 
         std::ifstream fin("D:\\payment_system_oop\\savings_file\\Part_time_employee_info.txt");
         fin >> numb;
@@ -307,17 +308,28 @@ void AddPartEmployeeInfo() {
         fout.close();
 
         for (int i = 0; i < emp_numb; i++) {
-            part_time_employee.push_back(PartTimeEmployee(i));
-            part_time_employee[i].writePartTimeEmployeeInfo();
+            part_time_employee.push_back(std::make_shared<PartTimeEmployee>(i));
+            part_time_employee[i]->writePartTimeEmployeeInfo();
         }
-
-
     }
-
 }
+void SeePartEmployeeInfo() {
+    int numb, pos = 0;
 
+    std::fstream fin("D:\\payment_system_oop\\savings_file\\Part_time_employee_info.txt", std::ios::in);
+    fin >> numb;
 
-
+    std::vector<std::shared_ptr<PartTimeEmployee>> part_time_employee;
+    for (int i = 0; i < numb; i++) {
+        part_time_employee.push_back(std::make_shared<PartTimeEmployee>());
+    }
+    for (int i = 0; i < numb; i++) {
+        part_time_employee[i]->readPartTimeEmployeeInfo(pos);
+        std::cout << *part_time_employee[i];
+        pos = pos + 5;
+    }
+    fin.close();
+}
 
 void AddPayoutInfo(Payout &payout, std::string &question) {
     int unexpected_expenses;
@@ -345,7 +357,6 @@ void AddPayoutInfo(Payout &payout, std::string &question) {
         }
     }
 }
-
 void SeePayoutInfo(Payout &payout) {
     payout.getInfo();
     std::cout << "\n" << "\n";
@@ -372,7 +383,6 @@ void AddProfitInfo(Bank &profit, std::string &question) {
         }
     }
 }
-
 void SeeProfitInfo(Bank &profit) {
     profit.getInfo();
     std::cout << "\n" << "\n";
