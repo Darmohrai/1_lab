@@ -8,12 +8,12 @@
 #include "Employee.h"
 #include <iostream>
 
-class PartTimeEmployee : public Employee{
+class PartTimeEmployee : public Employee {
 private:
     int hourly_rate;
     int hours_of_work;
 public:
-    PartTimeEmployee(){}
+    PartTimeEmployee() {}
 
     PartTimeEmployee(int i);
 
@@ -21,11 +21,11 @@ public:
 
     int getIncome() const { return hourly_rate * hours_of_work; }
 
-    int operator + (const PartTimeEmployee& worker) const;
+    int operator+(const PartTimeEmployee &worker) const;
 
-    friend std::ostream& operator<<(std::ostream &os, PartTimeEmployee &worker);
+    friend std::ostream &operator<<(std::ostream &os, PartTimeEmployee &worker);
 
-    PartTimeEmployee& operator=(const PartTimeEmployee& other) {
+    PartTimeEmployee &operator=(const PartTimeEmployee &other) {
         if (this != &other) {
             Employee::operator=(other);
             hourly_rate = other.hourly_rate;
@@ -34,10 +34,16 @@ public:
         return *this;
     }
 
+    void getBriefInfo() final {
+        std::cout << getFull_Name() << " is " << getPosition() << " and works " << hours_of_work
+                  << " hours with hourly rate -  " << hourly_rate << "\n";
+    }
+
     void writePartTimeEmployeeInfo();
+
     void readPartTimeEmployeeInfo(int pos);
 
-    ~PartTimeEmployee(){};
+    ~PartTimeEmployee() {};
 };
 
 

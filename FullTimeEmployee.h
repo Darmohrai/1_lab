@@ -52,7 +52,7 @@ public:
     }
 
     void getBriefInfo() final{
-        std::cout << getFull_Name() << " " << getPosition() << " salary - " << salary;
+        std::cout << getFull_Name() << " is " << getPosition() << " and has salary - " << salary << "\n";
     }
 
     void writeFullTimeEmployeeInfo();

@@ -10,6 +10,8 @@
 
 void MenuManager();
 
+void MenuClient();
+
 void AddFullEmployeeInfo();
 
 void SeeFullEmployeeInfo();
@@ -21,6 +23,8 @@ void AddPartEmployeeInfo();
 void SeePartEmployeeInfo();
 
 void ChangePartEmployeeInfo();
+
+void SeeBriefEmployeeInfo();
 
 void AddProfitInfo(Bank &profit, std::string &question);
 
@@ -73,6 +77,8 @@ int main() {
                 }
             } else if (answer == "client") {
                 user_name = true;
+                gap();
+                MenuClient();
             } else {
                 throw false;
             }
@@ -198,6 +204,41 @@ void MenuManager() {
         }
     }
 
+}
+
+void MenuClient() {
+    int action;
+    std::string question;
+    std::fstream fin("D:\\payment_system_oop\\savings_file\\Client_history.txt", std::ios::app);
+    for (int j = 0; j < 1;) {
+        system("pause");
+        std::cout << "What do you want to do?\n" <<
+                  "1. See information about employee\n" <<
+                  "2. See information about payout\n" <<
+                  "3. See information about company assets\n" <<
+                  "4. Exit\n";
+        int i = 0;
+        while (i < 1) {
+            std::cin >> action;
+            try {
+                if (action == 1) {
+                    fin << "\nClient saw information about employee - ";
+                    SeeBriefEmployeeInfo();
+                    i = 1;
+                } else if (action == 4) {
+                    i = 1;
+                    j = 1;
+                } else {
+                    throw false;
+                }
+            }
+            catch (bool) {
+                std::cerr << "You write wrong number, try again\n";
+                i = 1;
+            }
+        }
+    }
+    fin.close();
 }
 
 void AddFullEmployeeInfo() {
@@ -389,6 +430,64 @@ void ChangePartEmployeeInfo() {
     for (int i = 0; i < numb; i++) {
         part_time_employee[i]->writePartTimeEmployeeInfo();
     }
+}
+
+void SeeBriefEmployeeInfo() {
+    std::string action;
+    bool quest = true;
+
+    int numb, pos = 0;
+
+    std::fstream fin("D:\\payment_system_oop\\savings_file\\Full_time_employee_info.txt", std::ios::in);
+    fin >> numb;
+
+    std::vector<std::shared_ptr<FullTimeEmployee>> full_time_employee;
+    do {
+        std::cout << "Type name of employee: ";
+        std::cin >> action;
+        std::fstream fin_c("D:\\payment_system_oop\\savings_file\\Client_history.txt", std::ios::app);
+        fin_c << action << " ";
+        fin_c.close();
+        pos = 0;
+        for (int i = 0; i < numb; i++) {
+
+            full_time_employee.push_back(std::make_shared<FullTimeEmployee>());
+            full_time_employee[i]->readFullTimeEmployeeInfo(pos);
+            if (full_time_employee[i]->getFull_Name() == action) {
+                full_time_employee[i]->getBriefInfo();
+                i = numb;
+                gap();
+                std::cout << "Do you want see info about another employee? (type yes or no)";
+                std::cin >> action;
+                if (action == "no") quest = false;
+            } else if (i >= numb - 1) {
+                std::fstream fin_p("D:\\payment_system_oop\\savings_file\\Part_time_employee_info.txt",
+                                   std::ios::in);
+                int numb_p;
+                pos = 0;
+                fin_p >> numb_p;
+                for (int k = 0; k < numb_p; k++) {
+                    std::vector<std::shared_ptr<PartTimeEmployee>> part_time_employee;
+                    part_time_employee.push_back(std::make_shared<PartTimeEmployee>());
+                    part_time_employee[i]->readPartTimeEmployeeInfo(pos);
+                    if (part_time_employee[i]->getFull_Name() == action) {
+                        part_time_employee[i]->getBriefInfo();
+                        k = numb_p;
+                        i = numb;
+                        gap();
+                        std::cout << "Do you want see info about another employee? (type yes or no)";
+                        std::cin >> action;
+                        if (action == "no") quest = false;
+                    }
+                    pos = pos + 5;
+
+                }
+                fin_p.close();
+            }
+            pos = pos + 6;
+        }
+    } while (quest);
+    fin.close();
 }
 
 void AddPayoutInfo(Payout &payout, std::string &question) {
