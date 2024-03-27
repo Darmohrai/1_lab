@@ -19,9 +19,9 @@ Employee::Employee(std::string full_name, int age) : Human(full_name, age) {
     std::cin >> this->position;
 }
 
-void Employee::writeEmployeeInfo(int size_of_object) {
-    writeHumanInfo(size_of_object);
-    std::ofstream fout("D:\\payment_system_oop\\savings_file\\Full_time_employee_info.txt", std::ios::app);
+void Employee::writeEmployeeInfo(int size_of_object, std::string file_name) {
+    writeHumanInfo(size_of_object, file_name);
+    std::ofstream fout(file_name, std::ios::app);
     fout << position << "\n";
     fout.close();
 }

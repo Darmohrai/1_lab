@@ -46,13 +46,14 @@ std::ostream &operator<<(std::ostream &os, FullTimeEmployee &worker) {
 }
 
 void FullTimeEmployee::writeFullTimeEmployeeInfo() {
+    std::string file_name = "D:\\payment_system_oop\\savings_file\\Full_time_employee_info.txt";
     int size_of_object;
     std::string size_int;
     size_of_object = std::size(full_name) + std::size(position) + std::size(std::to_string(age)) +
                      std::size(std::to_string(salary)) + std::size(std::to_string(annual_leave)) +
                      std::size(std::to_string(sick_leave)) + 6;
-    std::ofstream fout("D:\\payment_system_oop\\savings_file\\Full_time_employee_info.txt", std::ios::app);
-    writeEmployeeInfo(size_of_object);
+    std::ofstream fout(file_name, std::ios::app);
+    writeEmployeeInfo(size_of_object, file_name);
     fout << salary << "\n" << annual_leave << "\n" << sick_leave << "\n" << "\n";
     fout.close();
 }

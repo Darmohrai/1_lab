@@ -11,10 +11,10 @@
 void MenuManager();
 
 void AddFullEmployeeInfo();
-
 void SeeFullEmployeeInfo();
-
 void ChangeFullEmployeeInfo();
+
+void AddPartEmployeeInfo();
 
 void AddProfitInfo(Bank &profit, std::string &question);
 
@@ -107,6 +107,11 @@ void MenuManager() {
                         fileStream << "0\n";
                         fileStream.close();
                     }
+                    if (!std::filesystem::exists("D:\\payment_system_oop\\savings_file\\Part_time_employee_info.txt")) {
+                        std::ofstream fileStream("D:\\payment_system_oop\\savings_file\\Part_time_employee_info.txt");
+                        fileStream << "0\n";
+                        fileStream.close();
+                    }
                     i = 1;
                     if (action == 1) {
                         std::cout << "Which type of employee?\n" <<
@@ -117,6 +122,9 @@ void MenuManager() {
                         std::cin >> emp_act;
                         if (emp_act == 1) {
                             AddFullEmployeeInfo();
+                        }
+                        if (emp_act == 2) {
+                            AddPartEmployeeInfo();
                         }
                         if (emp_act == 3) {
                             ChangeFullEmployeeInfo();
@@ -210,7 +218,6 @@ void AddFullEmployeeInfo() {
     }
 
 }
-
 void SeeFullEmployeeInfo() {
     int numb, pos = 0;
 
@@ -228,7 +235,6 @@ void SeeFullEmployeeInfo() {
     }
     fin.close();
 }
-
 void ChangeFullEmployeeInfo() {
 
     int numb, pos = 0;
@@ -276,6 +282,42 @@ void ChangeFullEmployeeInfo() {
         full_time_employee[i]->writeFullTimeEmployeeInfo();
     }
 }
+
+
+
+void AddPartEmployeeInfo() {
+    int emp_numb, numb, full_numb;
+    std::cout << "How many new employee do you want to add? ";
+
+    std::cin >> emp_numb;
+
+    if (emp_numb > 0) {
+        std::vector<PartTimeEmployee> part_time_employee;
+
+
+        std::ifstream fin("D:\\payment_system_oop\\savings_file\\Part_time_employee_info.txt");
+        fin >> numb;
+        full_numb = emp_numb + numb;
+        fin.close();
+
+        std::fstream fout("D:\\payment_system_oop\\savings_file\\Part_time_employee_info.txt",
+                          std::ios::in | std::ios::out);
+        fout.seekp(0);
+        fout << full_numb;
+        fout.close();
+
+        for (int i = 0; i < emp_numb; i++) {
+            part_time_employee.push_back(PartTimeEmployee(i));
+            part_time_employee[i].writePartTimeEmployeeInfo();
+        }
+
+
+    }
+
+}
+
+
+
 
 void AddPayoutInfo(Payout &payout, std::string &question) {
     int unexpected_expenses;

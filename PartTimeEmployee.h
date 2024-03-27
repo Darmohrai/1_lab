@@ -32,6 +32,8 @@ public:
         return *this;
     }
 
+    void writePartTimeEmployeeInfo();
+
     ~PartTimeEmployee(){};
 };
 

@@ -23,3 +23,12 @@ std::ostream& operator<<(std::ostream &os, PartTimeEmployee &worker){
        << "annual leave: " << worker.hourly_rate << std::endl;
     return os;
 }
+
+void PartTimeEmployee::writePartTimeEmployeeInfo() {
+    std::string file_name = "D:\\payment_system_oop\\savings_file\\Part_time_employee_info.txt";
+    int i = 0;
+    std::ofstream fout(file_name, std::ios::app);
+    writeEmployeeInfo(i, file_name);
+    fout << hourly_rate << "\n" << hours_of_work << "\n";
+    fout.close();
+}
