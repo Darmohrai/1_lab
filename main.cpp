@@ -11,11 +11,16 @@
 void MenuManager();
 
 void AddFullEmployeeInfo();
+
 void SeeFullEmployeeInfo();
+
 void ChangeFullEmployeeInfo();
 
 void AddPartEmployeeInfo();
+
 void SeePartEmployeeInfo();
+
+void ChangePartEmployeeInfo();
 
 void AddProfitInfo(Bank &profit, std::string &question);
 
@@ -88,8 +93,8 @@ void MenuManager() {
     for (int j = 0; j < 1;) {
         system("pause");
         std::cout << "What do you want to do?\n" <<
-                  "1. Add new or change info employee\n" <<                               // not
-                  "2. See information about employee\n" <<                                // not
+                  "1. Add new or change info employee\n" <<                               // ready
+                  "2. See information about employee\n" <<                                // ready
                   "3. Add information about company profit\n" <<                          // ready
                   "4. See information about company profit\n" <<                          // ready
                   "5. Add information about payout\n" <<                                  // ready
@@ -129,6 +134,9 @@ void MenuManager() {
                         }
                         if (emp_act == 3) {
                             ChangeFullEmployeeInfo();
+                        }
+                        if (emp_act == 4) {
+                            ChangePartEmployeeInfo();
                         }
                     }
                     if (action == 2) {
@@ -219,6 +227,7 @@ void AddFullEmployeeInfo() {
         }
     }
 }
+
 void SeeFullEmployeeInfo() {
     int numb, pos = 0;
 
@@ -236,6 +245,7 @@ void SeeFullEmployeeInfo() {
     }
     fin.close();
 }
+
 void ChangeFullEmployeeInfo() {
 
     int numb, pos = 0;
@@ -251,6 +261,8 @@ void ChangeFullEmployeeInfo() {
         pos = pos + 6;
     }
     fin.close();
+    std::ofstream fcls("D:\\payment_system_oop\\savings_file\\Full_time_employee_info.txt");
+    fcls.close();
 
     std::string question = "yes";
     while (question == "yes") {
@@ -267,15 +279,14 @@ void ChangeFullEmployeeInfo() {
 
         for (int i = 0; i < numb; i++) {
             if (full_time_employee[i]->getFull_Name() == full_name) {
-                full_time_employee.push_back(std::make_shared<FullTimeEmployee>(full_name, full_time_employee[i]->getAge(),
-                                                   full_time_employee[i]->getSick_leave(), pos));
+                *full_time_employee[i] = FullTimeEmployee(full_name, full_time_employee[i]->getAge(),
+                                                          full_time_employee[i]->getSick_leave(), pos);
                 break;
             }
         }
     }
 
-    std::fstream fout("D:\\payment_system_oop\\savings_file\\Full_time_employee_info.txt",
-                      std::ios::in | std::ios::out);
+    std::fstream fout("D:\\payment_system_oop\\savings_file\\Full_time_employee_info.txt");
     fout.seekp(0);
     fout << numb;
     fout.close();
@@ -284,8 +295,6 @@ void ChangeFullEmployeeInfo() {
         full_time_employee[i]->writeFullTimeEmployeeInfo();
     }
 }
-
-
 
 void AddPartEmployeeInfo() {
     int emp_numb, numb, full_numb;
@@ -313,6 +322,7 @@ void AddPartEmployeeInfo() {
         }
     }
 }
+
 void SeePartEmployeeInfo() {
     int numb, pos = 0;
 
@@ -329,6 +339,56 @@ void SeePartEmployeeInfo() {
         pos = pos + 5;
     }
     fin.close();
+}
+
+void ChangePartEmployeeInfo() {
+
+    int numb, pos = 0;
+
+    std::fstream fin("D:\\payment_system_oop\\savings_file\\Part_time_employee_info.txt", std::ios::in);
+    fin >> numb;
+    std::vector<std::shared_ptr<PartTimeEmployee>> part_time_employee;
+    for (int i = 0; i < numb; i++) {
+        part_time_employee.push_back(std::make_shared<PartTimeEmployee>());
+    }
+    for (int i = 0; i < numb; i++) {
+        part_time_employee[i]->readPartTimeEmployeeInfo(pos);
+        pos = pos + 6;
+    }
+    fin.close();
+    std::ofstream fcls("D:\\payment_system_oop\\savings_file\\Part_time_employee_info.txt");
+    fcls.close();
+
+    std::string question = "yes";
+    while (question == "yes") {
+        std::cout << "Did anyone get a promotion? (put 'yes' or 'no')" << std::endl;
+        std::cin >> question;
+        if (question == "no") {
+            break;
+        }
+        std::string full_name;
+        std::cout << "put his Full Name: ";
+        std::cin >> full_name;
+
+        pos = 0;
+
+        for (int i = 0; i < numb; i++) {
+            if (part_time_employee[i]->getFull_Name() == full_name) {
+                *part_time_employee[i] = PartTimeEmployee(full_name, part_time_employee[i]->getAge());
+                break;
+            }
+        }
+    }
+
+    std::fstream fout("D:\\payment_system_oop\\savings_file\\Part_time_employee_info.txt",
+                      std::ios::in | std::ios::out);
+    fout.seekp(0);
+    fout << numb;
+    fout.close();
+
+    for (int i = 0; i < numb; i++) {
+        part_time_employee[i]->writePartTimeEmployeeInfo();
+    }
 }
 
 void AddPayoutInfo(Payout &payout, std::string &question) {
@@ -357,6 +417,7 @@ void AddPayoutInfo(Payout &payout, std::string &question) {
         }
     }
 }
+
 void SeePayoutInfo(Payout &payout) {
     payout.getInfo();
     std::cout << "\n" << "\n";
@@ -383,6 +444,7 @@ void AddProfitInfo(Bank &profit, std::string &question) {
         }
     }
 }
+
 void SeeProfitInfo(Bank &profit) {
     profit.getInfo();
     std::cout << "\n" << "\n";
