@@ -4,7 +4,7 @@
 
 #include "Human.h"
 
-Human::Human(std::string full_name, int age) : full_name{full_name}{
+Human::Human(std::string full_name, int age){
     this->full_name = full_name;
     this->age = age;
 
@@ -12,7 +12,7 @@ Human::Human(std::string full_name, int age) : full_name{full_name}{
 
 void Human::writeHumanInfo(int size_of_object) {
     std::ofstream fout("D:\\payment_system_oop\\savings_file\\Full_time_employee_info.txt", std::ios::app);
-    fout << "\n\n" << size_of_object<< "\n" << full_name << "\n" << age << "\n";
+    fout << "\n\n" << full_name << "\n" << age << "\n";
     fout.close();
 }
 
@@ -26,7 +26,7 @@ void Human::readHumanInfo(int pos) {/*
     std::ifstream fin("D:\\payment_system_oop\\savings_file\\Full_time_employee_info.txt");
     std::string l;
     //fin.seekg(pos+1);
-    for (int i = 0; i < pos + 2; i++){
+    for (int i = 0; i < pos + 1; i++){
         fin >> l;
     }
     fin >> full_name >> age;

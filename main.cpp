@@ -256,11 +256,14 @@ void ChangeFullEmployeeInfo() {
         std::cout << "put his Full Name: ";
         std::cin >> full_name;
 
+        pos = 0;
+
         for (int i = 0; i < numb; i++) {
             if (full_time_employee[i]->getFull_Name() == full_name) {
 
-                *full_time_employee[i] = FullTimeEmployee(full_name, full_time_employee[i]->getAge(),
-                                                          full_time_employee[i]->getSick_leave());
+
+                full_time_employee.push_back(std::make_shared<FullTimeEmployee>(full_name, full_time_employee[i]->getAge(),
+                                                   full_time_employee[i]->getSick_leave(), pos));
 
                 break;
             }

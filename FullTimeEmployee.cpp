@@ -15,7 +15,7 @@ FullTimeEmployee::FullTimeEmployee(int i) : Employee(i) {
     std::cin >> this->sick_leave;
 }
 
-FullTimeEmployee::FullTimeEmployee(std::string full_name, int age, int sick_leave) : Employee(full_name, age) {
+FullTimeEmployee::FullTimeEmployee(std::string full_name, int age, int sick_leave, int pos) : Employee(full_name, age) {
     promotion++;
 
     std::cout << "write new salary: ";
@@ -25,6 +25,11 @@ FullTimeEmployee::FullTimeEmployee(std::string full_name, int age, int sick_leav
     std::cin >> this->annual_leave;
 
     this->sick_leave = sick_leave;
+/*
+    std::ofstream fout("D:\\payment_system_oop\\savings_file\\Full_time_employee_info.txt", std::ios::out | std::ios::trunc);
+    fout.seekp(pos, std::ios::beg);
+    fout << "\n" << full_name << "\n" << age << "\n" << position << "                    \n" << salary
+         << "                     \n" << annual_leave << "\n" << sick_leave;*/
 }
 
 int FullTimeEmployee::operator+(const FullTimeEmployee &worker) const {
@@ -52,12 +57,13 @@ void FullTimeEmployee::writeFullTimeEmployeeInfo() {
     fout.close();
 }
 
+
 void FullTimeEmployee::readFullTimeEmployeeInfo(int pos) {
     readEmployeeInfo(pos);
     std::ifstream fin("D:\\payment_system_oop\\savings_file\\Full_time_employee_info.txt");
     //fin.seekg(pos+4);
     std::string l;
-    for (int i = 0; i < pos + 5; i++) {
+    for (int i = 0; i < pos + 4; i++) {
         fin >> l;
     }
     fin >> salary >> annual_leave >> sick_leave;

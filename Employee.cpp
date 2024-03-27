@@ -31,7 +31,7 @@ void Employee::readEmployeeInfo(int pos) {
     std::ifstream fin("D:\\payment_system_oop\\savings_file\\Full_time_employee_info.txt");
     //fin.seekg(pos+3);
     std::string  l;
-    for (int i = 0; i < pos + 4; i++){
+    for (int i = 0; i < pos + 3; i++){
         fin >> l;
     }
     fin >> position;

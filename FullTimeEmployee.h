@@ -15,7 +15,7 @@ private:
 public:
     FullTimeEmployee() : salary(0), annual_leave(0), sick_leave(0), Employee(){}
 
-    FullTimeEmployee(std::string full_name, int age, int sick_leave);
+    FullTimeEmployee(std::string full_name, int age, int sick_leave , int pos);
 
     explicit FullTimeEmployee(int i);
 
