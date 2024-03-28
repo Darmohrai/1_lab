@@ -88,20 +88,23 @@ void Bank::readInfoFromFile() {
     fin.close();
 }
 
-void Bank::writeAssetsInfo(){
+void Bank::writeAssetsInfo() {
     std::ofstream fout("D:\\payment_system_oop\\savings_file\\Assets_info.txt");
-    for(int i = 0; i < 3; i++){
-        if(assets[i] != NULL){
+    for (int i = 0; i < 3; i++) {
+        if (assets[i] != NULL) {
             fout << assets[i] << "\n";
-        } else{
+        } else {
             fout << "0";
         }
     }
     fout.close();
 }
 
-void Bank::readAssetsInfo(){
+void Bank::readAssetsInfo() {
     std::ifstream fin("D:\\payment_system_oop\\savings_file\\Assets_info.txt");
-    fin >> assets[0] >> assets[1] >> assets[2];
+    assets = new int[3];
+    for (int i = 0; i < 3; i++) {
+        fin >> assets[i];
+    }
     fin.close();
 }

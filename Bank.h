@@ -19,6 +19,7 @@ private:
 
     int *assets;
 public:
+
     explicit Bank(std::string name_of_bank = "None", int monthly_profit = 0, int workdays = 0);
 
     Bank(const Bank &profit);

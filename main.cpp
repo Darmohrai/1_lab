@@ -183,14 +183,16 @@ void MenuManager() {
                 } else if (action == 7 or action == 8) {
                     i = 1;
                     Bank profit;
-                    profit.readAssetsInfo();
                     if (action == 7) {
                         profit.setAssets();
+                        profit.writeAssetsInfo();
+                        gap();
                     }
                     if (action == 8) {
+                        profit.readAssetsInfo();
                         profit.getAssets();
+                        gap();
                     }
-                    profit.writeAssetsInfo();
                 } else if (action == 9) {
                     i = 1;
                     j = 1;
@@ -210,6 +212,7 @@ void MenuClient() {
     int action;
     std::string question;
     std::fstream fin("D:\\payment_system_oop\\savings_file\\Client_history.txt", std::ios::app);
+    fin << "\n\n";
     for (int j = 0; j < 1;) {
         system("pause");
         std::cout << "What do you want to do?\n" <<
@@ -222,10 +225,26 @@ void MenuClient() {
             std::cin >> action;
             try {
                 if (action == 1) {
-                    fin << "\nClient saw information about employee - ";
+                    fin << "Client saw information about employee - ";
                     SeeBriefEmployeeInfo();
                     i = 1;
-                } else if (action == 4) {
+                } else if (action == 2) {
+                    fin << "Client saw information about payout\n";
+                    i = 1;
+                    std::string payout;
+                    std::ifstream f_payout("D:\\payment_system_oop\\savings_file\\Payout_info.txt");
+                    if (f_payout.is_open()) {
+                        f_payout >> payout;
+                        std::cout << "\n\n Payout will be paid on "<< payout;
+                        gap();
+                    }
+                }else if(action == 3){
+                    i = 1;
+                    Bank profit;
+                    profit.readAssetsInfo();
+                    profit.getAssets();
+                }
+                else if (action == 4) {
                     i = 1;
                     j = 1;
                 } else {
