@@ -421,7 +421,7 @@ void ChangePartEmployeeInfo() {
     }
     for (int i = 0; i < numb; i++) {
         part_time_employee[i]->readPartTimeEmployeeInfo(pos);
-        pos = pos + 6;
+        pos = pos + 5;
     }
     fin.close();
     std::ofstream fcls("D:\\payment_system_oop\\savings_file\\Part_time_employee_info.txt");
@@ -474,6 +474,7 @@ void SeeBriefEmployeeInfo() {
     std::fstream fin_c("D:\\payment_system_oop\\savings_file\\Client_history.txt", std::ios::app);
     std::vector<std::shared_ptr<FullTimeEmployee>> full_time_employee;
     do {
+        fin_c.open("D:\\payment_system_oop\\savings_file\\Client_history.txt", std::ios::app);
         std::cout << "Type name of employee: ";
         std::cin >> action;
         fin_c << action << " ";
@@ -491,7 +492,9 @@ void SeeBriefEmployeeInfo() {
                 std::cout << "Do you want see info about another employee? (type yes or no)";
                 std::cin >> action;
                 if (action == "no") quest = false;
-            } else if (i >= numb - 1) {
+                else quest = true;
+            }
+            else if (i >= numb - 1) {
                 std::fstream fin_p("D:\\payment_system_oop\\savings_file\\Part_time_employee_info.txt",
                                    std::ios::in);
                 int numb_p;
@@ -500,16 +503,17 @@ void SeeBriefEmployeeInfo() {
                 for (int k = 0; k < numb_p; k++) {
                     std::vector<std::shared_ptr<PartTimeEmployee>> part_time_employee;
                     part_time_employee.push_back(std::make_shared<PartTimeEmployee>());
-                    part_time_employee[i]->readPartTimeEmployeeInfo(pos);
-                    if (part_time_employee[i]->getFull_Name() == action) {
+                    part_time_employee[k]->readPartTimeEmployeeInfo(pos);
+                    if (part_time_employee[k]->getFull_Name() == action) {
                         NOT = false;
-                        part_time_employee[i]->getBriefInfo();
+                        part_time_employee[k]->getBriefInfo();
                         k = numb_p;
                         i = numb;
                         gap();
                         std::cout << "Do you want see info about another employee? (type yes or no)";
                         std::cin >> action;
                         if (action == "no") quest = false;
+                        else quest = true;
                     }
                     pos = pos + 5;
                 }
@@ -520,11 +524,14 @@ void SeeBriefEmployeeInfo() {
         if (NOT) {
             fin_c.open("D:\\payment_system_oop\\savings_file\\Client_history.txt", std::ios::app);
             fin_c << "(NOT)  ";
-            std::cerr << "This employee doesn't exist\n ";
+            fin_c.close();
+            std::cout << "This employee doesn't exist\n ";
             std::cout << "Do you want see info about another employee? (type yes or no)\n";
             std::cin >> action;
             if (action == "no") quest = false;
+            else quest = true;
         }
+        fin_c.close();
     } while (quest);
     fin_c.open("D:\\payment_system_oop\\savings_file\\Client_history.txt", std::ios::app);
     fin_c << "\n";
