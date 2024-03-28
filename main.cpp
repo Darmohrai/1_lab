@@ -211,40 +211,49 @@ void MenuManager() {
 void MenuClient() {
     int action;
     std::string question;
-    std::fstream fin("D:\\payment_system_oop\\savings_file\\Client_history.txt", std::ios::app);
-    fin << "\n\n";
     for (int j = 0; j < 1;) {
+        std::fstream fin("D:\\payment_system_oop\\savings_file\\Client_history.txt", std::ios::app);
         system("pause");
         std::cout << "What do you want to do?\n" <<
                   "1. See information about employee\n" <<
                   "2. See information about payout\n" <<
                   "3. See information about company assets\n" <<
-                  "4. Exit\n";
+                  "4. See user history\n" <<
+                  "5. Exit\n";
         int i = 0;
         while (i < 1) {
             std::cin >> action;
             try {
                 if (action == 1) {
-                    fin << "Client saw information about employee - ";
                     SeeBriefEmployeeInfo();
                     i = 1;
                 } else if (action == 2) {
                     fin << "Client saw information about payout\n";
+                    fin.close();
                     i = 1;
                     std::string payout;
                     std::ifstream f_payout("D:\\payment_system_oop\\savings_file\\Payout_info.txt");
                     if (f_payout.is_open()) {
                         f_payout >> payout;
-                        std::cout << "\n\n Payout will be paid on "<< payout;
+                        std::cout << "\n\n Payout will be paid on " << payout << "\n\n";
                         gap();
+                        f_payout.close();
                     }
-                }else if(action == 3){
+                } else if (action == 3) {
+                    fin << "Client saw information about company assets\n";
+                    fin.close();
                     i = 1;
                     Bank profit;
                     profit.readAssetsInfo();
                     profit.getAssets();
-                }
-                else if (action == 4) {
+                } else if (action == 4) {
+                    i = 1;
+                    std::fstream f_history("D:\\payment_system_oop\\savings_file\\Client_history.txt");
+                    std::string client_h;
+                    while (std::getline(f_history, client_h)) {
+                        std::cout << client_h << "\n";
+                    }
+                } else if (action == 5) {
                     i = 1;
                     j = 1;
                 } else {
@@ -257,7 +266,6 @@ void MenuClient() {
             }
         }
     }
-    fin.close();
 }
 
 void AddFullEmployeeInfo() {
@@ -452,27 +460,31 @@ void ChangePartEmployeeInfo() {
 }
 
 void SeeBriefEmployeeInfo() {
+    std::fstream fin_cl("D:\\payment_system_oop\\savings_file\\Client_history.txt", std::ios::app);
+    fin_cl << "Client saw information about employee - ";
+    fin_cl.close();
     std::string action;
-    bool quest = true;
+    bool quest = true, NOT = true;
 
     int numb, pos = 0;
 
     std::fstream fin("D:\\payment_system_oop\\savings_file\\Full_time_employee_info.txt", std::ios::in);
     fin >> numb;
 
+    std::fstream fin_c("D:\\payment_system_oop\\savings_file\\Client_history.txt", std::ios::app);
     std::vector<std::shared_ptr<FullTimeEmployee>> full_time_employee;
     do {
         std::cout << "Type name of employee: ";
         std::cin >> action;
-        std::fstream fin_c("D:\\payment_system_oop\\savings_file\\Client_history.txt", std::ios::app);
         fin_c << action << " ";
         fin_c.close();
         pos = 0;
         for (int i = 0; i < numb; i++) {
-
+            NOT = true;
             full_time_employee.push_back(std::make_shared<FullTimeEmployee>());
             full_time_employee[i]->readFullTimeEmployeeInfo(pos);
             if (full_time_employee[i]->getFull_Name() == action) {
+                NOT = false;
                 full_time_employee[i]->getBriefInfo();
                 i = numb;
                 gap();
@@ -490,6 +502,7 @@ void SeeBriefEmployeeInfo() {
                     part_time_employee.push_back(std::make_shared<PartTimeEmployee>());
                     part_time_employee[i]->readPartTimeEmployeeInfo(pos);
                     if (part_time_employee[i]->getFull_Name() == action) {
+                        NOT = false;
                         part_time_employee[i]->getBriefInfo();
                         k = numb_p;
                         i = numb;
@@ -499,13 +512,23 @@ void SeeBriefEmployeeInfo() {
                         if (action == "no") quest = false;
                     }
                     pos = pos + 5;
-
                 }
                 fin_p.close();
             }
             pos = pos + 6;
         }
+        if (NOT) {
+            fin_c.open("D:\\payment_system_oop\\savings_file\\Client_history.txt", std::ios::app);
+            fin_c << "(NOT)  ";
+            std::cerr << "This employee doesn't exist\n ";
+            std::cout << "Do you want see info about another employee? (type yes or no)\n";
+            std::cin >> action;
+            if (action == "no") quest = false;
+        }
     } while (quest);
+    fin_c.open("D:\\payment_system_oop\\savings_file\\Client_history.txt", std::ios::app);
+    fin_c << "\n";
+    fin_c.close();
     fin.close();
 }
 
